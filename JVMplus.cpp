@@ -37,44 +37,62 @@ STATUS_VALUE JvavVirtualMachine::compile() {
         if (!local.is_open())
             cout << "error: can not create temp file. \n" << endl;
         local << identifier << fileToCompile;
+        // local << "system(\"pause\");";
         local.close();
 
         std::string _comArgs = "g++ ";
-        if(isStrict){
-            _comArgs+="-Wall -Werror -Wextra -pedantic -Wimplicit-fallthrough -Wsequence-point -Wswitch-default -Wswitch-unreachable -Wswitch-enum -Wstringop-truncation -Wbool-compare -Wtautological-compare -Wfloat-equal -Wshadow=global -Wpointer-arith -Wpointer-compare -Wcast-align -Wcast-qual -Wwrite-strings -Wdangling-else -Wlogical-op ";
+        if (isStrict) {
+            _comArgs +=
+                "-Wall -Werror -Wextra -pedantic -Wimplicit-fallthrough "
+                "-Wsequence-point -Wswitch-default -Wswitch-unreachable "
+                "-Wswitch-enum -Wstringop-truncation -Wbool-compare "
+                "-Wtautological-compare -Wfloat-equal -Wshadow=global "
+                "-Wpointer-arith -Wpointer-compare -Wcast-align -Wcast-qual "
+                "-Wwrite-strings -Wdangling-else -Wlogical-op ";
         }
-        if(stdv!=0){
-            switch (stdv)
-            {
-            case 17:
-                _comArgs+="-std=c++17 ";
-                break;
-            case 11:
-                _comArgs+="-std=c++11 ";
-                break;
-            case 14:
-                _comArgs+="-std=c++14 ";
-                break;
-            
-            default:
-                break;
+        if (stdv != 0) {
+            switch (stdv) {
+                case 17:
+                    _comArgs += "-std=c++17 ";
+                    break;
+                case 11:
+                    _comArgs += "-std=c++11 ";
+                    break;
+                case 14:
+                    _comArgs += "-std=c++14 ";
+                    break;
+
+                default:
+                    break;
             }
         }
         _comArgs += fileName;
+        if (compileMode == 1) {
+            _comArgs += " -o ";
+            _comArgs += oname;
+        }
         int result = system(_comArgs.c_str());
-        if (result == 0) {
-            system("a.exe");
-            system("del a.exe");
-        } else if (result == 1) {
+        if (compileMode != 1) {
+            if (result == 0) {
+                system("a.exe");
+                system("del a.exe");
+            } else if (result == 1) {
+                _comArgs = "del " + fileName;
+                system(_comArgs.c_str());
+                cout << "deleting *.cpp\n";
+                return STATUS_NO_GPP;
+            }
+
             _comArgs = "del " + fileName;
             system(_comArgs.c_str());
-            cout << "deleting *.cpp\n";
-            return STATUS_NO_GPP;
+            cout << endl;
+        }else{
+            if (result == 0) {
+                std::cout << "\nYour execute file has been generated." << endl;
+            } else if (result == 1) {
+                std::cout << "\nUnknown Error." << endl;
+            }
         }
-
-        _comArgs = "del " + fileName;
-        system(_comArgs.c_str());
-        cout << endl;
     }
     return STATUS_SUCCESS;
 }

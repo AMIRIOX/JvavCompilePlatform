@@ -1,3 +1,10 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+
+using namespace std;
+
 #define JvavBegin
 #define JvavEnd
 
@@ -34,6 +41,5 @@
 #define TEN 10
 
 
-#include <bits/stdc++.h>
-using namespace std;
+
 

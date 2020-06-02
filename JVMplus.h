@@ -21,16 +21,28 @@ class JvavVirtualMachine {
     std::string fileName;
     bool isStrict;
     int stdv;
+    int compileMode;
+    std::string oname;
 
    public:
-    JvavVirtualMachine(std::string fName, bool iss = true, int stdversion=0)
-        : fileName(fName), isStrict(iss), stdv(stdversion) {}
+    JvavVirtualMachine(std::string fName, bool iss = true, int stdversion=0, int comMode=0)
+        : fileName(fName), isStrict(iss), stdv(stdversion), compileMode(comMode) {}
     STATUS_VALUE compile();
     void setStrictMode(bool a){
         isStrict=a;
     }
     void setStandardVersion(int ver){
         stdv=ver;
+    }
+    void setMakePackageOptions(std::string name){
+        setCompileMode(1);
+        setExecuteFileName(name);
+    }
+    void setCompileMode(int mode){
+        compileMode=mode;
+    }
+    void setExecuteFileName(std::string on){
+        oname = on;
     }
     // TODO : 带有-o参数的直接生成可执行文件
 };

@@ -28,7 +28,7 @@ void init_() {
 }
 bool tmpstrict = true;
 int tmpversion = 0;
-STATUS_VALUE processChangeSettings(string set_c) {
+void processChangeSettings(string set_c) {
     switch (settingCommandMap[set_c]) {
         case 1: {
             tmpstrict = false;
@@ -83,8 +83,9 @@ int main(int argc, char** argv) {
     /*en_main*/
     en_main:
         cout << "---------------------------------------------\n";
-        cout << "| Jvav Program                Ver.1.3 Pre2  |\n";
+        cout << "| Jvav Program                Ver.2 Pre0    |\n";
         cout << "| By Dr.ZhangHaoYang      Programmer 30266  |\n";
+        cout << "| The author of the JCP & Jvins: Amiriox    |\n";
         cout << "| Enter'help'to get help!                   |\n";
         cout << "| Online push updates are now supported!    |\n";
         cout << "| Compile vav source ile are now supported! |\n";
@@ -147,6 +148,30 @@ int main(int argc, char** argv) {
                 cin >> tmp;
             }
             goto main;
+        }else if(command=="jvins"){
+            string fileName;
+            cin >> fileName;
+            string _oname;
+            cin >> _oname;
+            JvavVirtualMachine jvav_compiler(fileName);
+            jvav_compiler.setStrictMode(tmpstrict);
+            jvav_compiler.setStandardVersion(tmpversion);
+            jvav_compiler.setMakePackageOptions(_oname);
+            STATUS_VALUE compile_result = jvav_compiler.compile();
+            if (compile_result == STATUS_SUCCESS) {
+                cout << "\nCompile successfully.\n";
+            } else if (compile_result == STATUS_NO_GPP) {
+                cout << "\nCompiler error or there is no g++ compiler "
+                        "environment!\n";
+            } else if (compile_result == STATUS_NO_IDEN) {
+                cout << "\nThe identifier file is missing, please check if the "
+                        "identity.res file is in good condition.\n";
+            } else if (compile_result == STATUS_NO_INPUT) {
+                cout << "\nThere are no such files in the directory.\n";
+            } else {
+                cout << "\nUnknown Error.\n";
+            }
+            goto main;
         } else if (command == "leave") {
             cout << "Are you sure to leave jvav?(y/n)";
             string L;
@@ -200,11 +225,13 @@ int main(int argc, char** argv) {
     ch:
         language = "简体中文";
         cout << "--------------------------------------------\n";
-        cout << "| Jvav编译器             版本：1.3 预览版2    |\n";
-        cout << "| 作者：张浩洋大师           编写者：30266     |\n";
-        cout << "| 通过输入'帮助'来获得帮助                     |\n";
-        cout << "| 现已支持在线推送更新！                       |\n";
-        cout << "| 现已支持编译Jvav源文件!                     |\n";
+        cout << "| Jvav编译器             版本：2 预览版0       |\n";
+        cout << "| 作者：张浩洋大师           编写者：30266      |\n";
+        cout << "| Jvav编译平台和Jvav打包程序的作者: Amiriox     |\n";
+        cout << "| 注意,JCP/Jvins在中文模式下不可用              |\n";
+        cout << "| 通过输入'帮助'来获得帮助                      |\n";
+        cout << "| 现已支持在线推送更新！                        |\n";
+        cout << "| 现已支持编译Jvav源文件!                      |\n";
         cout << "--------------------------------------------\n";
     cn_main:
         cout << "Jvav>";
