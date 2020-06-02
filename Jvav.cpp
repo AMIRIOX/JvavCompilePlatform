@@ -7,6 +7,14 @@
     Jvav Programmer Ver.03w00c Snapshot
     By Amiriox
     Compilation time 2020-05-15 15:24
+    ----------------------------------
+    Jvav Programmer Ver.2 Release
+    By Amiriox
+    Compilation time 2020-06-02 12:56
+    ----------------------------------
+    Jvav Programmer Ver.2.1 Snapshot
+    By Amiriox
+    Compilation time 2020-06-02 20:00
 */
 #include <windows.h>
 
@@ -85,7 +93,7 @@ int main(int argc, char** argv) {
     /*en_main*/
     en_main:
         cout << "---------------------------------------------\n";
-        cout << "| Jvav Program                Ver.2 Pre0    |\n";
+        cout << "| Jvav Program                Ver.2.1 Pre0  |\n";
         cout << "| By Dr.ZhangHaoYang      Programmer 30266  |\n";
         cout << "| The author of the JCP & Jvins: Amiriox    |\n";
         cout << "| Enter'help'to get help!                   |\n";
@@ -108,7 +116,7 @@ int main(int argc, char** argv) {
                     "language\n  info:Jvav information\n";
             cout << "----Jvav help------Page(1/1)---\n";
             goto main;
-        } else if (command == "compile" || command=="cl") {
+        } else if (command == "compile" || command == "cl") {
             // TODO : 限于水平,此处无法编译太大的文件(300行以上)
             string fileName;
             cin >> fileName;
@@ -130,7 +138,7 @@ int main(int argc, char** argv) {
                 cout << "\nUnknown Error.\n";
             }
             goto main;
-        } else if (command == "settings" || command=="set") {
+        } else if (command == "settings" || command == "set") {
             HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
             SetConsoleTextAttribute(hd, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
             cout << "tips: ";
@@ -153,7 +161,7 @@ int main(int argc, char** argv) {
                 cin >> tmp;
             }
             goto main;
-        } else if (command == "jvins" || command=="jvi") {
+        } else if (command == "jvins" || command == "jvi") {
             string fileName;
             cin >> fileName;
             string _oname;
@@ -230,7 +238,7 @@ int main(int argc, char** argv) {
     ch:
         language = "简体中文";
         cout << "--------------------------------------------\n";
-        cout << "| Jvav编译器             版本：2 预览版0       |\n";
+        cout << "| Jvav编译器             版本：2.1 预览版0     |\n";
         cout << "| 作者：张浩洋大师           编写者：30266      |\n";
         cout << "| Jvav编译平台和Jvav打包程序的作者: Amiriox     |\n";
         cout << "| JCP/Jvins在中文模式下已经可以使用!            |\n";
@@ -244,6 +252,8 @@ int main(int argc, char** argv) {
         if (cn_command == "帮助") {
             cout << "----Jvav帮助---第(1/1)页----\n";
             cout << "  帮助 [页码]:获取帮助\n  退出:退出Jvav\n  "
+                    "编译 [文件名]:编译源文件\n  生成 [源文件名] "
+                    "[可执行文件名]: 生成可执行文件\n"
                     "输出:输出字符\n  "
                     "输入:输入字符以便调用\n  更新:在线检测版本更新\n  "
                     "cn_lang:设置Jvav的语言\n  关于:获取关于Jvav的信息\n";
@@ -315,7 +325,7 @@ int main(int argc, char** argv) {
                 cout << "\nUnknown Error.\n";
             }
             goto cn_main;
-        }  else if (cn_command == "退出") {
+        } else if (cn_command == "退出") {
             cout << "你确定要退出Jvav吗？(是/否)";
             string cn_back;
             cin >> cn_back;
@@ -343,7 +353,7 @@ int main(int argc, char** argv) {
             goto cn_main;
         } else if (cn_command == "更新") {
             cout << "Jvav>更新>对不起,这个功能我们正在开发中.\n";
-            goto upgrade;
+            goto cn_main;
         } else if (cn_command == "cn_lang") {
             cout << "请输入您要切换的语言(简体中文/English):";
             string cn_lang;
@@ -366,63 +376,110 @@ int main(int argc, char** argv) {
         ! upgrade
         ! can not run!
         */
-    upgrade:
-        system("java -jar upgrade.jar > upgrade.txt");
-        ifstream readFile("upgrade.txt");
-        int ret;
-        readFile >> ret;
-        readFile.close();
-        if (ret == -1) {
-            if (language == "English") {
-                cout << "Jvav>upgrade>Error! The update failed! Because the "
-                        "version "
-                        "list cannot be obtained on the authentication "
-                        "server!\n";
-                goto main;
-            } else if (language == "简体中文") {
-                cout << "Jvav>更新>错误！无法从认证服务器获取版本列表！\n";
-                goto cn_main;
-            }
-        } else if (ret > 6) {
-            if (language == "English") {
-                cout << "Jvav>upgrade>Updated versionavailable for upgrades, "
-                        "please "
-                        "go to "
-                        "https://30266-official.github.io/updates/Jvav.zip "
-                        "download!\n";
-                goto main;
-            } else if (language == "简体中文") {
-                cout << "有更新版本可供升级，请前往https://"
-                        "30266-official.github.io/updates/Jvav.zip下载！\n";
-                goto cn_main;
-            }
-        } else if (ret == 6) {
-            if (language == "English") {
-                cout << "Congratulations! You've upgraded to the latest "
-                        "version!\n";
-                goto main;
+        // upgrade:
+        //     system("java -jar upgrade.jar > upgrade.txt");
+        //     ifstream readFile("upgrade.txt");
+        //     int ret;
+        //     readFile >> ret;
+        //     readFile.close();
+        //     if (ret == -1) {
+        //         if (language == "English") {
+        //             cout << "Jvav>upgrade>Error! The update failed! Because
+        //             the "
+        //                     "version "
+        //                     "list cannot be obtained on the authentication "
+        //                     "server!\n";
+        //             goto main;
+        //         } else if (language == "简体中文") {
+        //             cout <<
+        //             "Jvav>更新>错误！无法从认证服务器获取版本列表！\n"; goto
+        //             cn_main;
+        //         }
+        //     } else if (ret > 6) {
+        //         if (language == "English") {
+        //             cout << "Jvav>upgrade>Updated versionavailable for
+        //             upgrades, "
+        //                     "please "
+        //                     "go to "
+        //                     "https://30266-official.github.io/updates/Jvav.zip
+        //                     " "download!\n";
+        //             goto main;
+        //         } else if (language == "简体中文") {
+        //             cout << "有更新版本可供升级，请前往https://"
+        //                     "30266-official.github.io/updates/Jvav.zip下载！\n";
+        //             goto cn_main;
+        //         }
+        //     } else if (ret == 6) {
+        //         if (language == "English") {
+        //             cout << "Congratulations! You've upgraded to the latest "
+        //                     "version!\n";
+        //             goto main;
+        //         } else {
+        //             cout << "恭喜你！你已升级至最新版本！\n";
+        //             goto cn_main;
+        //         }
+        //     } else {
+        //         if (language == "English") {
+        //             cout
+        //                 << "Jvav>upgrade>Error!We can't get a version list
+        //                 because "
+        //                    "your version is coming from a future version, so
+        //                    we " "don't " "support it.\n";
+        //             goto main;
+        //             cout << ret;
+        //         } else if (language == "简体中文") {
+        //             cout << "Jvav>更新>"
+        //                     "错误！我们无法获取版本列表，因为您的版本是来自未来的版"
+        //                     "本，"
+        //                     "故我们不提供支持。\n";
+        //             goto cn_main;
+        //         }
+        //     }
+
+    } else {
+        string cmd=argv[1];
+        if (cmd == "-c") {
+            // TODO : 限于水平,此处无法编译太大的文件(300行以上)
+            string fileName=argv[2];
+            JvavVirtualMachine jvav_compiler(fileName);
+            jvav_compiler.setStrictMode(false);
+            jvav_compiler.setStandardVersion(11);
+            STATUS_VALUE compile_result = jvav_compiler.compile();
+            if (compile_result == STATUS_SUCCESS) {
+                cout << "\nCompile successfully.\n";
+            } else if (compile_result == STATUS_NO_GPP) {
+                cout << "\nCompiler error or there is no g++ compiler "
+                        "environment!\n";
+            } else if (compile_result == STATUS_NO_IDEN) {
+                cout << "\nThe identifier file is missing, please check if the "
+                        "identity.res file is in good condition.\n";
+            } else if (compile_result == STATUS_NO_INPUT) {
+                cout << "\nThere are no such files in the directory.\n";
             } else {
-                cout << "恭喜你！你已升级至最新版本！\n";
-                goto cn_main;
+                cout << "\nUnknown Error.\n";
             }
-        } else {
-            if (language == "English") {
-                cout
-                    << "Jvav>upgrade>Error!We can't get a version list because "
-                       "your version is coming from a future version, so we "
-                       "don't "
-                       "support it.\n";
-                goto main;
-                cout << ret;
-            } else if (language == "简体中文") {
-                cout << "Jvav>更新>"
-                        "错误！我们无法获取版本列表，因为您的版本是来自未来的版"
-                        "本，"
-                        "故我们不提供支持。\n";
-                goto cn_main;
+        } else if (cmd == "-o") {
+            string fileName=argv[2];
+            string _oname=argv[3];
+            JvavVirtualMachine jvav_compiler(fileName);
+            jvav_compiler.setStrictMode(false);
+            jvav_compiler.setStandardVersion(11);
+            jvav_compiler.setMakePackageOptions(_oname);
+            STATUS_VALUE compile_result = jvav_compiler.compile();
+            if (compile_result == STATUS_SUCCESS) {
+                cout << "\nCompile successfully.\n";
+            } else if (compile_result == STATUS_NO_GPP) {
+                cout << "\nCompiler error or there is no g++ compiler "
+                        "environment!\n";
+            } else if (compile_result == STATUS_NO_IDEN) {
+                cout << "\nThe identifier file is missing, please check if "
+                        "the "
+                        "identity.res file is in good condition.\n";
+            } else if (compile_result == STATUS_NO_INPUT) {
+                cout << "\nThere are no such files in the directory.\n";
+            } else {
+                cout << "\nUnknown Error.\n";
             }
         }
-    } else {
-        // TODO
     }
 }

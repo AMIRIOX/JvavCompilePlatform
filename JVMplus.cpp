@@ -88,6 +88,9 @@ STATUS_VALUE JvavVirtualMachine::compile() {
             cout << endl;
         }else{
             if (result == 0) {
+                std::string nametodel = "del ";
+                nametodel+=fileName;
+                 system(nametodel.c_str());
                 std::cout << "\nYour execute file has been generated." << endl;
             } else if (result == 1) {
                 std::cout << "\nUnknown Error." << endl;

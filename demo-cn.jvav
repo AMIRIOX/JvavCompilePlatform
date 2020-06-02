@@ -22,5 +22,4 @@ iNt mAiN(){  //iNt 为 整型变量
     //除此之外,您可以使用if/else的大写字母IF/ELSE来进行条件控制
     //像使用while那样使用Loop,像使用for那样使用ConLoop
 }
-
 JvavEnd
