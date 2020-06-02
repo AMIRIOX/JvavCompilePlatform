@@ -12,12 +12,65 @@
 
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <sstream>
 #include <string>
 
 #include "JVMplus.h"
 using namespace std;
+
+map<string, int> settingCommandMap;
+void init_() {
+    // settings map init;
+    settingCommandMap["-strict=false"] = 1;
+    settingCommandMap["-strict=true"] = 2;
+    settingCommandMap["-std"]=3;
+}
+bool tmpstrict = true;
+int tmpversion = 0;
+STATUS_VALUE processChangeSettings(string set_c) {
+    switch (settingCommandMap[set_c]) {
+        case 1: {
+            tmpstrict = false;
+            HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
+            SetConsoleTextAttribute(hd, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            cout << "Strict Mode already been closed."<<endl;
+            SetConsoleTextAttribute(
+                hd, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+            break;
+        }
+        case 2: {
+            tmpstrict = true;
+            HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
+            SetConsoleTextAttribute(hd, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            cout << "Strict Mode already been opened.";
+            SetConsoleTextAttribute(
+                hd, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+            break;
+        }
+        case 3:{
+            HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
+            cout << "Input 11 or 14 or 17 for jvav standard version: ";
+            bool outputWarning = bool(tmpversion);
+            cin >> tmpversion;
+            SetConsoleTextAttribute(hd, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            cout << "The standard has been set to "<<tmpversion << endl;
+            if(outputWarning){
+                SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_GREEN);
+                cout << "Warning: Before you set it up, the standard version is not the default" << endl;
+            }
+            SetConsoleTextAttribute(
+                hd, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+            break;
+        }
+        default: {
+            cout << "Unknown Setting Options.\n"<<endl;
+            break;
+        }
+    }
+};
 int main(int argc, char** argv) {
+    init_();
     if (argc == 1) {
         cout << "Initializing program...\n";
         string language;
@@ -54,6 +107,8 @@ int main(int argc, char** argv) {
             string fileName;
             cin >> fileName;
             JvavVirtualMachine jvav_compiler(fileName);
+            jvav_compiler.setStrictMode(tmpstrict);
+            jvav_compiler.setStandardVersion(tmpversion);
             STATUS_VALUE compile_result = jvav_compiler.compile();
             if (compile_result == STATUS_SUCCESS) {
                 cout << "\nCompile successfully.\n";
@@ -67,6 +122,29 @@ int main(int argc, char** argv) {
                 cout << "\nThere are no such files in the directory.\n";
             } else {
                 cout << "\nUnknown Error.\n";
+            }
+            goto main;
+        } else if (command == "settings") {
+            HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
+            SetConsoleTextAttribute(hd, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            cout << "tips: ";
+            hd = GetStdHandle(STD_OUTPUT_HANDLE);
+            // SetConsoleColor( FOREGROUND_RED, BACKGROUND_BLUE |
+            // FOREGROUND_GREEN );
+            SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_GREEN);
+            cout << "Warning: ";
+            hd = GetStdHandle(STD_OUTPUT_HANDLE);
+            SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_INTENSITY);
+            cout << "You are changing your settings\n";
+            SetConsoleTextAttribute(
+                hd, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+            cout << "Please enter the Settings you want to change,\nenter quit "
+                    "to quit: \n";
+            string tmp;
+            cin >> tmp;
+            while (tmp != "quit") {
+                processChangeSettings(tmp);
+                cin >> tmp;
             }
             goto main;
         } else if (command == "leave") {
@@ -261,7 +339,7 @@ int main(int argc, char** argv) {
                 goto cn_main;
             }
         }
-    }else{
-        
+    } else {
+        // TODO
     }
 }

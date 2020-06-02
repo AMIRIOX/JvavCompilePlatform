@@ -40,6 +40,26 @@ STATUS_VALUE JvavVirtualMachine::compile() {
         local.close();
 
         std::string _comArgs = "g++ ";
+        if(isStrict){
+            _comArgs+="-Wall -Werror -Wextra -pedantic -Wimplicit-fallthrough -Wsequence-point -Wswitch-default -Wswitch-unreachable -Wswitch-enum -Wstringop-truncation -Wbool-compare -Wtautological-compare -Wfloat-equal -Wshadow=global -Wpointer-arith -Wpointer-compare -Wcast-align -Wcast-qual -Wwrite-strings -Wdangling-else -Wlogical-op ";
+        }
+        if(stdv!=0){
+            switch (stdv)
+            {
+            case 17:
+                _comArgs+="-std=c++17 ";
+                break;
+            case 11:
+                _comArgs+="-std=c++11 ";
+                break;
+            case 14:
+                _comArgs+="-std=c++14 ";
+                break;
+            
+            default:
+                break;
+            }
+        }
         _comArgs += fileName;
         int result = system(_comArgs.c_str());
         if (result == 0) {
