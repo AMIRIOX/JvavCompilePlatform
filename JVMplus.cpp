@@ -1,9 +1,9 @@
 #include "JVMplus.h"
 STATUS_VALUE JvavVirtualMachine::compile() {
-    //*åŸç†: åœ¨æ–°å»ºæ–‡ä»¶å‰æ·»åŠ defineåçš„æ ‡è¯†ç¬¦,
-    //*ç„¶åä½¿ç”¨g++ç¼–è¯‘
-    //!æ³¨æ„,éœ€è¦g++ç¯å¢ƒ!
-    // TODO : ç›®å‰ä»…æ”¯æŒg++ æœªæ·»åŠ clang++, cl(msvc)ç­‰ç¼–è¯‘å™¨
+    //*Ô­Àí: ÔÚĞÂ½¨ÎÄ¼şÇ°Ìí¼ÓdefineºóµÄ±êÊ¶·û,
+    //*È»ºóÊ¹ÓÃg++±àÒë
+    //!×¢Òâ,ĞèÒªg++»·¾³!
+    // TODO : Ä¿Ç°½öÖ§³Ög++ Î´Ìí¼Óclang++, cl(msvc)µÈ±àÒëÆ÷
     ifstream srcFile;
     srcFile.open(fileName, ios::in);
     if (!srcFile.is_open()) {
@@ -11,7 +11,7 @@ STATUS_VALUE JvavVirtualMachine::compile() {
         return STATUS_NO_INPUT;
     } else {
         for (int i = 0; i <= 4; i++)
-            fileName.pop_back();  //åˆ é™¤ç»“å°¾çš„.jvavæ‰©å±•å
+            fileName.pop_back();  //É¾³ı½áÎ²µÄ.jvavÀ©Õ¹Ãû
         fileName += ".cpp";
         stringstream ss;
         ss << srcFile.rdbuf();
