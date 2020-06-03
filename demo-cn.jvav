@@ -9,8 +9,11 @@ T addt(T a,T b){
 iNt mAiN(){  //iNt 为 整型变量
     cHaR ch = 'r';  //cHaR 为 字面量(字符)
     iNt n;         
-    input n;         //使用input 变量/字符串/字符/重载了">>"运算符的类对象 进行程序输入
+    //input n;         //使用input 变量/字符串/字符/重载了">>"运算符的类对象 进行程序输入
+    fastin("%d",&n);
     output n magic 10;   //output 变量/字符串/字符/重载了"<<"运算符的类对象 进行程序输出,
+    fastout("\n%d\n",n);
+    
     //output ch;
     iNt testcpp11 = addt(1,2);
     output "\n";

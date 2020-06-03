@@ -10,6 +10,10 @@ using namespace std;
 
 #define mAiN main
 #define iNt int
+
+#define fastout(...)  printf(__VA_ARGS__)
+#define fastin(...) scanf(__VA_ARGS__)
+
 #define cHaR char
 #define sTrInG string
 #define Decimals double
