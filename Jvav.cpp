@@ -12,9 +12,13 @@
     By Amiriox
     Compilation time 2020-06-02 12:56
     ----------------------------------
-    Jvav Programmer Ver.2.1 Snapshot
+    Jvav Programmer Ver.2.1 
     By Amiriox
     Compilation time 2020-06-02 20:00
+    ----------------------------------
+    Jvav Programmer Ver.2.2 Snapshot
+    By Amiriox
+    Compilation time 2020-06-03 09:30
 */
 #include <windows.h>
 
@@ -93,7 +97,7 @@ int main(int argc, char** argv) {
     /*en_main*/
     en_main:
         cout << "---------------------------------------------\n";
-        cout << "| Jvav Program                Ver.2.1 Pre0  |\n";
+        cout << "| Jvav Program                Ver.2.2 Pre1  |\n";
         cout << "| By Dr.ZhangHaoYang      Programmer 30266  |\n";
         cout << "| The author of the JCP & Jvins: Amiriox    |\n";
         cout << "| Enter'help'to get help!                   |\n";
@@ -117,7 +121,7 @@ int main(int argc, char** argv) {
             cout << "----Jvav help------Page(1/1)---\n";
             goto main;
         } else if (command == "compile" || command == "cl") {
-            // TODO : ÏÞÓÚË®Æ½,´Ë´¦ÎÞ·¨±àÒëÌ«´óµÄÎÄ¼þ(300ÐÐÒÔÉÏ)
+            // TODO : ï¿½ï¿½ï¿½ï¿½Ë®Æ½,ï¿½Ë´ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½Ì«ï¿½ï¿½ï¿½ï¿½Ä¼ï¿?(300ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
             string fileName;
             cin >> fileName;
             JvavVirtualMachine jvav_compiler(fileName);
@@ -214,164 +218,166 @@ int main(int argc, char** argv) {
         } else if (command == "upgrade") {
             cout << "Jvav>upgrade>Sorry, we are developing this feature.\n";
             goto main;
-        } else if (command == "language") {
-            cout << "Please enter the setting language(English/¼òÌåÖÐÎÄ):";
-            // string language;
-            cin >> language;
-            if (language == "English") {
-                goto main;
-            } else if (language == "¼òÌåÖÐÎÄ") {
-                system("cls");
-                goto ch;
-            } else {
-                cout << "Unknown language.\n";
-                goto main;
-            }
-        } else if (command == "exit" || command == "EXIT") {
+        } 
+        //else if (command == "language") {
+        //     cout << "Please enter the setting language(English/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½):";
+        //     // string language;
+        //     cin >> language;
+        //     if (language == "English") {
+        //         goto main;
+        //     } else if (language == "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") {
+        //         system("cls");
+        //         goto ch;
+        //     } else {
+        //         cout << "Unknown language.\n";
+        //         goto main;
+        //     }
+        // } 
+        else if (command == "exit" || command == "EXIT") {
             return 0;
         } else {
             cout << "Unknown command\n";
             goto main;
         }
 
-        /*cn_main*/
-    ch:
-        language = "¼òÌåÖÐÎÄ";
-        cout << "--------------------------------------------\n";
-        cout << "| Jvav±àÒëÆ÷             °æ±¾£º2.1 Ô¤ÀÀ°æ0     |\n";
-        cout << "| ×÷Õß£ºÕÅºÆÑó´óÊ¦           ±àÐ´Õß£º30266      |\n";
-        cout << "| Jvav±àÒëÆ½Ì¨ºÍJvav´ò°ü³ÌÐòµÄ×÷Õß: Amiriox     |\n";
-        cout << "| JCP/JvinsÔÚÖÐÎÄÄ£Ê½ÏÂÒÑ¾­¿ÉÒÔÊ¹ÓÃ!            |\n";
-        cout << "| Í¨¹ýÊäÈë'°ïÖú'À´»ñµÃ°ïÖú                      |\n";
-        cout << "| ÏÖÒÑÖ§³ÖÔÚÏßÍÆËÍ¸üÐÂ£¡                        |\n";
-        cout << "| ÏÖÒÑÖ§³Ö±àÒëJvavÔ´ÎÄ¼þ!                      |\n";
-        cout << "--------------------------------------------\n";
-    cn_main:
-        cout << "Jvav>";
-        cin >> cn_command;
-        if (cn_command == "°ïÖú") {
-            cout << "----Jvav°ïÖú---µÚ(1/1)Ò³----\n";
-            cout << "  °ïÖú [Ò³Âë]:»ñÈ¡°ïÖú\n  ÍË³ö:ÍË³öJvav\n  "
-                    "±àÒë [ÎÄ¼þÃû]:±àÒëÔ´ÎÄ¼þ\n  Éú³É [Ô´ÎÄ¼þÃû] "
-                    "[¿ÉÖ´ÐÐÎÄ¼þÃû]: Éú³É¿ÉÖ´ÐÐÎÄ¼þ\n"
-                    "Êä³ö:Êä³ö×Ö·û\n  "
-                    "ÊäÈë:ÊäÈë×Ö·ûÒÔ±ãµ÷ÓÃ\n  ¸üÐÂ:ÔÚÏß¼ì²â°æ±¾¸üÐÂ\n  "
-                    "cn_lang:ÉèÖÃJvavµÄÓïÑÔ\n  ¹ØÓÚ:»ñÈ¡¹ØÓÚJvavµÄÐÅÏ¢\n";
-            cout << "----Jvav°ïÖú---µÚ(1/1)Ò³----\n";
-            goto cn_main;
-        } else if (cn_command == "±àÒë") {
-            // TODO : ÏÞÓÚË®Æ½,´Ë´¦ÎÞ·¨±àÒëÌ«´óµÄÎÄ¼þ(300ÐÐÒÔÉÏ)
-            string fileName;
-            cin >> fileName;
-            JvavVirtualMachine jvav_compiler(fileName);
-            jvav_compiler.setStrictMode(tmpstrict);
-            jvav_compiler.setStandardVersion(tmpversion);
-            STATUS_VALUE compile_result = jvav_compiler.compile();
-            if (compile_result == STATUS_SUCCESS) {
-                cout << "\n±àÒë³É¹¦.\n";
-            } else if (compile_result == STATUS_NO_GPP) {
-                cout << "\n±àÒëÊ§°Ü,¿ÉÄÜÓÐÓï·¨´íÎó»òÃ»ÓÐg++»·¾³.\n";
-            } else if (compile_result == STATUS_NO_IDEN) {
-                cout << "\n±êÊ¶·ûÎÄ¼þ¶ªÊ§,Çë¼ì²é\"identifier.res\"\n";
-            } else if (compile_result == STATUS_NO_INPUT) {
-                cout << "\nÄ¿Â¼ÖÐÃ»ÓÐÖ¸¶¨µÄÔ´ÎÄ¼þ\n";
-            } else {
-                cout << "\nÎ´Öª´íÎó.\n";
-            }
-            goto cn_main;
-        } else if (cn_command == "ÉèÖÃ") {
-            HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
-            SetConsoleTextAttribute(hd, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-            cout << "ÌáÊ¾: ";
-            hd = GetStdHandle(STD_OUTPUT_HANDLE);
-            // SetConsoleColor( FOREGROUND_RED, BACKGROUND_BLUE |
-            // FOREGROUND_GREEN );
-            SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_GREEN);
-            cout << "¾¯¸æ: ";
-            hd = GetStdHandle(STD_OUTPUT_HANDLE);
-            SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_INTENSITY);
-            cout << "ÄúÕýÔÚ¸ü¸ÄÉèÖÃ\n";
-            SetConsoleTextAttribute(
-                hd, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-            cout << "ÇëÊäÈëÄúÒª¸ü¸ÄµÄÉèÖÃÑ¡Ïî,\n ÊäÈë\"ÍË³ö\"ÒÔ±ãÍË³ö: \n";
-            string tmp;
-            cin >> tmp;
-            while (tmp != "ÍË³ö") {
-                processChangeSettings(tmp);
-                cin >> tmp;
-            }
-            goto cn_main;
-        } else if (cn_command == "Éú³É") {
-            string fileName;
-            cin >> fileName;
-            string _oname;
-            cin >> _oname;
-            JvavVirtualMachine jvav_compiler(fileName);
-            jvav_compiler.setStrictMode(tmpstrict);
-            jvav_compiler.setStandardVersion(tmpversion);
-            jvav_compiler.setMakePackageOptions(_oname);
-            STATUS_VALUE compile_result = jvav_compiler.compile();
-            if (compile_result == STATUS_SUCCESS) {
-                cout << "\nCompile successfully.\n";
-            } else if (compile_result == STATUS_NO_GPP) {
-                cout << "\nCompiler error or there is no g++ compiler "
-                        "environment!\n";
-            } else if (compile_result == STATUS_NO_IDEN) {
-                cout << "\nThe identifier file is missing, please check if the "
-                        "identity.res file is in good condition.\n";
-            } else if (compile_result == STATUS_NO_INPUT) {
-                cout << "\nThere are no such files in the directory.\n";
-            } else {
-                cout << "\nUnknown Error.\n";
-            }
-            goto cn_main;
-        } else if (cn_command == "ÍË³ö") {
-            cout << "ÄãÈ·¶¨ÒªÍË³öJvavÂð£¿(ÊÇ/·ñ)";
-            string cn_back;
-            cin >> cn_back;
-            if (cn_back == "ÊÇ") {
-                return 0;
-            } else {
-                goto cn_main;
-            }
-        } else if (cn_command == "Êä³ö") {
-            cout << "Jvav>Êä³ö>";
-            cin >> cn_type;
-            cout << cn_type << endl;
-            goto cn_main;
-        } else if (cn_command == "ÊäÈë") {
-            cout << "Jvav>ÊäÈë>";
-            cin >> cn_input_char;
-            goto cn_main;
-        } else if (cn_command == "¹ØÓÚ") {
-            cout << "Jvav±à³ÌÆ÷,ºÍJvav±àÒëÆ½Ì¨£¬°æ±¾Îª2."
-                    "2Ô¤ÀÀ°æ1¡£\nÕâÖ»ÊÇÒ»¸ö¹££¬µ«ÊÇÎÒÃÇÒÀÈ»°ÑËü±ä³ÉÁËÏÖÊµ¡£×îÔç"
-                    "ÊÇÕÅ"
-                    "ºÆÑóÌá³öµÄÕâ¸ö¹£¡£\n¸Ã°æ±¾Ö§³ÖÍÑÀëjdkµÄÔËÐÐ¡£µ«ÐèÒªg++"
-                    "»·¾³¡£\n¸Ã³ÌÐò±àÐ´ÕßÎª3"
-                    "0266ºÍAmiriox¡£\n";
-            goto cn_main;
-        } else if (cn_command == "¸üÐÂ") {
-            cout << "Jvav>¸üÐÂ>¶Ô²»Æð,Õâ¸ö¹¦ÄÜÎÒÃÇÕýÔÚ¿ª·¢ÖÐ.\n";
-            goto cn_main;
-        } else if (cn_command == "cn_lang") {
-            cout << "ÇëÊäÈëÄúÒªÇÐ»»µÄÓïÑÔ(¼òÌåÖÐÎÄ/English):";
-            string cn_lang;
-            cin >> cn_lang;
-            if (cn_lang == "¼òÌåÖÐÎÄ") {
-                goto cn_main;
-            } else if (cn_lang == "English") {
-                system("cls");
-                language = "English";
-                goto en_main;
-            } else {
-                cout << "Î´ÖªµÄÓïÑÔ¡£\n";
-                goto cn_main;
-            }
-        } else {
-            cout << "Î´ÖªµÄÃüÁî£¡\n";
-            goto cn_main;
-        }
+    //     /*cn_main*/
+    // ch:
+    //     language = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+    //     cout << "--------------------------------------------\n";
+    //     cout << "| Jvavï¿½ï¿½ï¿½ï¿½ï¿½ï¿½             ï¿½æ±¾ï¿½ï¿½2.1 Ô¤ï¿½ï¿½ï¿½ï¿½0     |\n";
+    //     cout << "| ï¿½ï¿½ï¿½ß£ï¿½ï¿½Åºï¿½ï¿½ï¿½ï¿½Ê?           ï¿½ï¿½Ð´ï¿½ß£ï¿½30266      |\n";
+    //     cout << "| Jvavï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½ï¿½Jvavï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: Amiriox     |\n";
+    //     cout << "| JCP/Jvinsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½!            |\n";
+    //     cout << "| Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'ï¿½ï¿½ï¿½ï¿½'ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿?                      |\n";
+    //     cout << "| ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½Â£ï¿½                        |\n";
+    //     cout << "| ï¿½ï¿½ï¿½ï¿½Ö§ï¿½Ö±ï¿½ï¿½ï¿½JvavÔ´ï¿½Ä¼ï¿½!                      |\n";
+    //     cout << "--------------------------------------------\n";
+    // cn_main:
+    //     cout << "Jvav>";
+    //     cin >> cn_command;
+    //     if (cn_command == "ï¿½ï¿½ï¿½ï¿½") {
+    //         cout << "----Jvavï¿½ï¿½ï¿½ï¿½---ï¿½ï¿½(1/1)Ò³----\n";
+    //         cout << "  ï¿½ï¿½ï¿½ï¿½ [Ò³ï¿½ï¿½]:ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½\n  ï¿½Ë³ï¿½:ï¿½Ë³ï¿½Jvav\n  "
+    //                 "ï¿½ï¿½ï¿½ï¿½ [ï¿½Ä¼ï¿½ï¿½ï¿½]:ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ä¼ï¿½\n  ï¿½ï¿½ï¿½ï¿½ [Ô´ï¿½Ä¼ï¿½ï¿½ï¿½] "
+    //                 "[ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½]: ï¿½ï¿½ï¿½É¿ï¿½Ö´ï¿½ï¿½ï¿½Ä¼ï¿½\n"
+    //                 "ï¿½ï¿½ï¿?:ï¿½ï¿½ï¿½ï¿½Ö·ï¿½\n  "
+    //                 "ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½\n  ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ß¼ï¿½ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½\n  "
+    //                 "cn_lang:ï¿½ï¿½ï¿½ï¿½Jvavï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n  ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Jvavï¿½ï¿½ï¿½ï¿½Ï¢\n";
+    //         cout << "----Jvavï¿½ï¿½ï¿½ï¿½---ï¿½ï¿½(1/1)Ò³----\n";
+    //         goto cn_main;
+    //     } else if (cn_command == "ï¿½ï¿½ï¿½ï¿½") {
+    //         // TODO : ï¿½ï¿½ï¿½ï¿½Ë®Æ½,ï¿½Ë´ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½Ì«ï¿½ï¿½ï¿½ï¿½Ä¼ï¿?(300ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    //         string fileName;
+    //         cin >> fileName;
+    //         JvavVirtualMachine jvav_compiler(fileName);
+    //         jvav_compiler.setStrictMode(tmpstrict);
+    //         jvav_compiler.setStandardVersion(tmpversion);
+    //         STATUS_VALUE compile_result = jvav_compiler.compile();
+    //         if (compile_result == STATUS_SUCCESS) {
+    //             cout << "\nï¿½ï¿½ï¿½ï¿½É¹ï¿?.\n";
+    //         } else if (compile_result == STATUS_NO_GPP) {
+    //             cout << "\nï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï·¨ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½g++ï¿½ï¿½ï¿½ï¿½.\n";
+    //         } else if (compile_result == STATUS_NO_IDEN) {
+    //             cout << "\nï¿½ï¿½Ê¶ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ê§,ï¿½ï¿½ï¿½ï¿½\"identifier.res\"\n";
+    //         } else if (compile_result == STATUS_NO_INPUT) {
+    //             cout << "\nÄ¿Â¼ï¿½ï¿½Ã»ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ä¼ï¿½\n";
+    //         } else {
+    //             cout << "\nÎ´Öªï¿½ï¿½ï¿½ï¿½.\n";
+    //         }
+    //         goto cn_main;
+    //     } else if (cn_command == "ï¿½ï¿½ï¿½ï¿½") {
+    //         HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
+    //         SetConsoleTextAttribute(hd, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+    //         cout << "ï¿½ï¿½Ê¾: ";
+    //         hd = GetStdHandle(STD_OUTPUT_HANDLE);
+    //         // SetConsoleColor( FOREGROUND_RED, BACKGROUND_BLUE |
+    //         // FOREGROUND_GREEN );
+    //         SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_GREEN);
+    //         cout << "ï¿½ï¿½ï¿½ï¿½: ";
+    //         hd = GetStdHandle(STD_OUTPUT_HANDLE);
+    //         SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    //         cout << "ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n";
+    //         SetConsoleTextAttribute(
+    //             hd, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    //         cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½,\n ï¿½ï¿½ï¿½ï¿½\"ï¿½Ë³ï¿½\"ï¿½Ô±ï¿½ï¿½Ë³ï¿½: \n";
+    //         string tmp;
+    //         cin >> tmp;
+    //         while (tmp != "ï¿½Ë³ï¿½") {
+    //             processChangeSettings(tmp);
+    //             cin >> tmp;
+    //         }
+    //         goto cn_main;
+    //     } else if (cn_command == "ï¿½ï¿½ï¿½ï¿½") {
+    //         string fileName;
+    //         cin >> fileName;
+    //         string _oname;
+    //         cin >> _oname;
+    //         JvavVirtualMachine jvav_compiler(fileName);
+    //         jvav_compiler.setStrictMode(tmpstrict);
+    //         jvav_compiler.setStandardVersion(tmpversion);
+    //         jvav_compiler.setMakePackageOptions(_oname);
+    //         STATUS_VALUE compile_result = jvav_compiler.compile();
+    //         if (compile_result == STATUS_SUCCESS) {
+    //             cout << "\nCompile successfully.\n";
+    //         } else if (compile_result == STATUS_NO_GPP) {
+    //             cout << "\nCompiler error or there is no g++ compiler "
+    //                     "environment!\n";
+    //         } else if (compile_result == STATUS_NO_IDEN) {
+    //             cout << "\nThe identifier file is missing, please check if the "
+    //                     "identity.res file is in good condition.\n";
+    //         } else if (compile_result == STATUS_NO_INPUT) {
+    //             cout << "\nThere are no such files in the directory.\n";
+    //         } else {
+    //             cout << "\nUnknown Error.\n";
+    //         }
+    //         goto cn_main;
+    //     } else if (cn_command == "ï¿½Ë³ï¿½") {
+    //         cout << "ï¿½ï¿½È·ï¿½ï¿½Òªï¿½Ë³ï¿½Jvavï¿½ï¿½(ï¿½ï¿½/ï¿½ï¿½)";
+    //         string cn_back;
+    //         cin >> cn_back;
+    //         if (cn_back == "ï¿½ï¿½") {
+    //             return 0;
+    //         } else {
+    //             goto cn_main;
+    //         }
+    //     } else if (cn_command == "ï¿½ï¿½ï¿?") {
+    //         cout << "Jvav>ï¿½ï¿½ï¿?>";
+    //         cin >> cn_type;
+    //         cout << cn_type << endl;
+    //         goto cn_main;
+    //     } else if (cn_command == "ï¿½ï¿½ï¿½ï¿½") {
+    //         cout << "Jvav>ï¿½ï¿½ï¿½ï¿½>";
+    //         cin >> cn_input_char;
+    //         goto cn_main;
+    //     } else if (cn_command == "ï¿½ï¿½ï¿½ï¿½") {
+    //         cout << "Jvavï¿½ï¿½ï¿½ï¿½ï¿?,ï¿½ï¿½Jvavï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½ï¿½ï¿½æ±¾Îª2."
+    //                 "2Ô¤ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½\nï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿?"
+    //                 "ï¿½ï¿½ï¿½ï¿½"
+    //                 "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½Ã°æ±¾Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jdkï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Òªg++"
+    //                 "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½Ã³ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Î?3"
+    //                 "0266ï¿½ï¿½Amirioxï¿½ï¿½\n";
+    //         goto cn_main;
+    //     } else if (cn_command == "ï¿½ï¿½ï¿½ï¿½") {
+    //         cout << "Jvav>ï¿½ï¿½ï¿½ï¿½>ï¿½Ô²ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿?.\n";
+    //         goto cn_main;
+    //     } else if (cn_command == "cn_lang") {
+    //         cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/English):";
+    //         string cn_lang;
+    //         cin >> cn_lang;
+    //         if (cn_lang == "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") {
+    //             goto cn_main;
+    //         } else if (cn_lang == "English") {
+    //             system("cls");
+    //             language = "English";
+    //             goto en_main;
+    //         } else {
+    //             cout << "Î´Öªï¿½ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½\n";
+    //             goto cn_main;
+    //         }
+    //     } else {
+    //         cout << "Î´Öªï¿½ï¿½ï¿½ï¿½ï¿½î£¡\n";
+    //         goto cn_main;
+    //     }
         /*
         ! upgrade
         ! can not run!
@@ -390,9 +396,9 @@ int main(int argc, char** argv) {
         //                     "list cannot be obtained on the authentication "
         //                     "server!\n";
         //             goto main;
-        //         } else if (language == "¼òÌåÖÐÎÄ") {
+        //         } else if (language == "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") {
         //             cout <<
-        //             "Jvav>¸üÐÂ>´íÎó£¡ÎÞ·¨´ÓÈÏÖ¤·þÎñÆ÷»ñÈ¡°æ±¾ÁÐ±í£¡\n"; goto
+        //             "Jvav>ï¿½ï¿½ï¿½ï¿½>ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½æ±¾ï¿½Ð±ï¿½ï¿½ï¿½\n"; goto
         //             cn_main;
         //         }
         //     } else if (ret > 6) {
@@ -404,9 +410,9 @@ int main(int argc, char** argv) {
         //                     "https://30266-official.github.io/updates/Jvav.zip
         //                     " "download!\n";
         //             goto main;
-        //         } else if (language == "¼òÌåÖÐÎÄ") {
-        //             cout << "ÓÐ¸üÐÂ°æ±¾¿É¹©Éý¼¶£¬ÇëÇ°Íùhttps://"
-        //                     "30266-official.github.io/updates/Jvav.zipÏÂÔØ£¡\n";
+        //         } else if (language == "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") {
+        //             cout << "ï¿½Ð¸ï¿½ï¿½Â°æ±¾ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½https://"
+        //                     "30266-official.github.io/updates/Jvav.zipï¿½ï¿½ï¿½Ø£ï¿½\n";
         //             goto cn_main;
         //         }
         //     } else if (ret == 6) {
@@ -415,7 +421,7 @@ int main(int argc, char** argv) {
         //                     "version!\n";
         //             goto main;
         //         } else {
-        //             cout << "¹§Ï²Äã£¡ÄãÒÑÉý¼¶ÖÁ×îÐÂ°æ±¾£¡\n";
+        //             cout << "ï¿½ï¿½Ï²ï¿½ã£¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°æ±¾ï¿½ï¿½\n";
         //             goto cn_main;
         //         }
         //     } else {
@@ -427,11 +433,11 @@ int main(int argc, char** argv) {
         //                    we " "don't " "support it.\n";
         //             goto main;
         //             cout << ret;
-        //         } else if (language == "¼òÌåÖÐÎÄ") {
-        //             cout << "Jvav>¸üÐÂ>"
-        //                     "´íÎó£¡ÎÒÃÇÎÞ·¨»ñÈ¡°æ±¾ÁÐ±í£¬ÒòÎªÄúµÄ°æ±¾ÊÇÀ´×ÔÎ´À´µÄ°æ"
-        //                     "±¾£¬"
-        //                     "¹ÊÎÒÃÇ²»Ìá¹©Ö§³Ö¡£\n";
+        //         } else if (language == "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") {
+        //             cout << "Jvav>ï¿½ï¿½ï¿½ï¿½>"
+        //                     "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½È¡ï¿½æ±¾ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ä°æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ä°ï¿½"
+        //                     "ï¿½ï¿½ï¿½ï¿½"
+        //                     "ï¿½ï¿½ï¿½ï¿½ï¿½Ç²ï¿½ï¿½á¹©Ö§ï¿½Ö¡ï¿½\n";
         //             goto cn_main;
         //         }
         //     }
@@ -439,7 +445,7 @@ int main(int argc, char** argv) {
     } else {
         string cmd=argv[1];
         if (cmd == "-c") {
-            // TODO : ÏÞÓÚË®Æ½,´Ë´¦ÎÞ·¨±àÒëÌ«´óµÄÎÄ¼þ(300ÐÐÒÔÉÏ)
+            // TODO : ï¿½ï¿½ï¿½ï¿½Ë®Æ½,ï¿½Ë´ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½Ì«ï¿½ï¿½ï¿½ï¿½Ä¼ï¿?(300ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
             string fileName=argv[2];
             JvavVirtualMachine jvav_compiler(fileName);
             jvav_compiler.setStrictMode(false);

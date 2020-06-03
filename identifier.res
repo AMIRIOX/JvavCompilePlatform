@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include "lib/io.hpp"
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
