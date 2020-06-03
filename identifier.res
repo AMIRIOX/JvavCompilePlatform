@@ -19,6 +19,8 @@ using namespace std;
 #define sTrInG string
 #define Decimals double
 #define Float float
+#define LnoGoLng long long
+#define uNsIgNeD unsigned
 #define magic *
 #define output cout<<
 #define input cin>>
@@ -31,6 +33,7 @@ using namespace std;
 #define IF if 
 #define ELSE else
 #define VIR virtual
+#define tEmPlAtE template
 
 
 #define ZERO 0

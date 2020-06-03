@@ -3,10 +3,10 @@
 #include <sstream>
 #include <string>
 #define STATUS_VALUE int
-#define STATUS_SUCCESS 1   //³É¹¦
-#define STATUS_NO_INPUT 2  //Ã»ÓĞ»ò²»ºÏ·¨µÄÊäÈë
-#define STATUS_NO_IDEN 3   //±êÊ¶·ûÎÄ¼ş(identifier.res)¶ªÊ§
-#define STATUS_NO_GPP 0    //Ã»ÓĞg++»·¾³
+#define STATUS_SUCCESS 1   //æˆåŠŸ
+#define STATUS_NO_INPUT 2  //æ²¡æœ‰æˆ–ä¸åˆæ³•çš„è¾“å…¥
+#define STATUS_NO_IDEN 3   //æ ‡è¯†ç¬¦æ–‡ä»¶(identifier.res)ä¸¢å¤±
+#define STATUS_NO_GPP 0    //æ²¡æœ‰g++ç¯å¢ƒ
 
 using std::cout;
 using std::endl;
@@ -44,5 +44,5 @@ class JvavVirtualMachine {
     void setExecuteFileName(std::string on){
         oname = on;
     }
-    // TODO : ´øÓĞ-o²ÎÊıµÄÖ±½ÓÉú³É¿ÉÖ´ĞĞÎÄ¼ş
+    // TODO : å¸¦æœ‰-oå‚æ•°çš„ç›´æ¥ç”Ÿæˆå¯æ‰§è¡Œæ–‡ä»¶
 };

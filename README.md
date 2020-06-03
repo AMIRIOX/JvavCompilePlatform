@@ -15,26 +15,19 @@ $ g++ Jvav.cpp JVMplus.cpp
 ## 可执行文件使用方法
 
 点击编译后的可执行文件即可,或将本目录加入环境变量,在cmd中输入`jcp`
-JCP在中文模式下是旧版本(没有严格模式),
-而Jvins在中文模式下不可用.
-我们将在Ver2.1中更新此问题
+同时,您也可以在cmd中直接使用`jcp -c {源文件名}.jvav`
 
 ## 设置
 ### 设置Jvav标准版本
 ```shell
-Jvav>settings
--std
-11
-quit
+Jvav>settings -std 11 quit
 ```
 ### 开启/关闭严格模式
 严格模式默认开启,会报变量未使用等错误
 所有warning将在严格模式下变为error.
 关闭严格模式如下.如需开启则将false改为true
 ```shell
-Jvav>settings
--strict=false
-quit
+Jvav>settings -strict=false quit
 ```
 
 ### 编译: compile命令

@@ -1,25 +1,25 @@
 JvavBegin
 
-template <typename T>
+tEmPlAtE <typename T>
 T addt(T a,T b){
     return a+b;
 }
 
 iNt mAiN(){  //iNt 为 整型变量
     //cHaR ch = 'r';  //cHaR 为 字面量(字符)
-    iNt n;         
+    //iNt n;         
     //input n;         //使用input 变量/字符串/字符/重载了">>"运算符的类对象 进行程序输入
-    fastin("%d",&n);
-    output n magic 10;   //output 变量/字符串/字符/重载了"<<"运算符的类对象 进行程序输出,
-    fastout("\n%d\n",n);
+    //fastin("%d",&n);
+    //output n magic 10;   //output 变量/字符串/字符/重载了"<<"运算符的类对象 进行程序输出,
+    //fastout("\n%d\n",n);
     //iNt n;
     //IO::in(n);
     //IO::out("the value of n: ");
     //IO::out(n);
     //output ch;
-    //iNt testcpp11 = addt(1,2);
-    //output "\n";
-    //output testcpp11;
+    iNt testcpp11 = addt(1,2);
+    output "\n";
+    output testcpp11;
     //并使用magic代替*(包括指针/解引用运算符和乘法的*都可以使用magic运算符)
     system("pause");
     goBack ZERO;    //使用goBack 代替 return

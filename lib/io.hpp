@@ -1,6 +1,21 @@
 //! io.hpp仍有问题,暂时不用,
 //TODO 下个版本修复
-
+#include <bits/stdc++.h>
+inline int read(){
+    int val = 0;
+    int flg = 1;
+    char ch = (char)getchar();
+    while(ch<'0'||ch>'9'){
+        if(ch=='-')
+            flg=0;
+        ch = (char)getchar();
+    }
+    while (ch >= '0' && ch <= '9') {
+        val = (val << 1) + (val << 3) + (ch ^ 48);
+        ch = (char)getchar();
+    }
+    return (flg?val:~(val-1));
+}
 // #include <bits/stdc++.h>
 // namespace IO {
 // const int str = 1 << 20;
