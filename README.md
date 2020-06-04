@@ -2,20 +2,34 @@
 
 这只是一个梗, 并且当事人并不介意大家玩这个梗
 
-如果您并不关心源代码,只想使用Jvav编译程序, 
+如果您想获得更好的开发体验(关键字高亮,快捷键自动编译等,自动补全正在开发)
+可以在VSCode中搜索插件`Jvavscode`,安装此插件后安装主程序即可ctrl+f5编译运行 (**请注意重启VSCode**)
 
+如果您需要手动下载资源文件(一般情况下程序会自动下载,如果出现bug请联系我们)
+请前往[http://airk.gitee.io/jvavresourcecdn/]( http://airk.gitee.io/jvavresourcecdn/ )
+
+如果您并不关心源代码,只想使用Jvav编译程序, 
 请前往Jvav安装程序:[https://gitee.com/Doxfer/jvav_auxiliary/tree/master/]( https://gitee.com/Doxfer/jvav_auxiliary/tree/master/ )
+
+
 
 ## 源代码编译和运行
 
 ```shell
-$ g++ Jvav.cpp JVMplus.cpp
+$ g++ Jvav.cpp JVMplus.cpp -o JCP
 ```
 
 ## 可执行文件使用方法
 
-点击编译后的可执行文件即可,或将本目录加入环境变量,在cmd中输入`jcp`
+将本目录加入环境变量,在cmd中输入`jcp init`
+点击编译后的可执行文件即可,或在cmd中输入`jcp`
 同时,您也可以在cmd中直接使用`jcp -c {源文件名}.jvav`
+
+## 初始化
+在cmd中输入
+```shell
+jcp init
+```
 
 ## 设置
 ### 设置Jvav标准版本
@@ -42,7 +56,32 @@ $ Jvav> compile demo-cn.jvav
 $ Jvav> jvins demo-cn.jvav {executeFileName}
 ```
 
+## 常见问题
+P1. Failed to create folder .....
+表示创建文件夹失败,很可能是您的C盘下面有重复目录,
+解决方案是:
+在C盘下面新建`Jvav`文件夹,并在Jvav文件夹下新建`resource`和`lib`文件夹,在`resource`文件夹下放入您在http://airk.gitee.io/jvavresourcecdn/identifier.res下载的identifier.res文件
 
+P2. The identifier file is missing, please check if the identity.res file is in good condition.installing identifier library for your device.Your device has already had identifier library.Please re-execute the compile command.
+表示您在编译前没有执行jcp init命令,在这个情况下,JCP将为您自动初始化,再次编译即可
+解决方案是:
+再次编译
+
+P3. Compiler error or there is no g++ compiler environment!
+可能是您的文件有语法错误,或您的设备中没有g++环境,在cmd中输入g++ -v,如果显示的是
+> 'g++' is not recognized as an internal or external command, operable program or batch file.
+
+那么请安装g++环境(事实上,如果您在 https://gitee.com/Doxfer/jvav_auxiliary/tree/master/ 中安装这个程序,将会为您自动添加g++环境)
+
+P4. your os is linux.
+你的操作系统为linux发行版(包括Deepin也是Linux发行版),目前暂不支持
+
+
+---
+
+以下内容不保证最新,请酌情阅读.
+
+---
 目录下的`demo-cn.jvav`是一个关于Jvav语法的演示文档
 
 ```Jvav

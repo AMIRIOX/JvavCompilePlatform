@@ -24,6 +24,10 @@
     Jvav Programmer Ver.2.2 Snapshot
     By Amiriox
     Compilation time 2020-06-03 09:30
+    ----------------------------------
+    Jvav Programmer Ver.2.2.1
+    By Amiriox
+    Compilation time 2020-06-04 09:53
 */
 #include <windows.h>
 
@@ -54,6 +58,8 @@ void windowsInit(){
         if(result!=0) cout << endl << "Failed to create folder \'C:\\Jvav\\resource\'"<<endl;
     }
     system("powershell (new-object System.Net.WebClient).DownloadFile( 'http://airk.gitee.io/jvavresourcecdn/identifier.res','C:\\Jvav\\resource\\identifier.res')");
+    
+    cout << "JCP has been initialized." << endl;
 }
 void all_init() {
 #ifdef __WINDOWS_
@@ -65,7 +71,7 @@ void all_init() {
 #endif
 
 #ifdef linux
-    cout << "you os is linux."<<endl;
+    cout << "your os is linux."<<endl;
 #endif
 }
 void init_() {
@@ -133,7 +139,7 @@ int main(int argc, char** argv) {
     /*en_main*/
     en_main:
         cout << "---------------------------------------------\n";
-        cout << "| Jvav Program                Ver.2.2 Pre1  |\n";
+        cout << "| Jvav Program               Ver.2.2.1 Pre1 |\n";
         cout << "| By Dr.ZhangHaoYang      Programmer 30266  |\n";
         cout << "| The author of the JCP & Jvins: Amiriox    |\n";
         cout << "| Enter'help'to get help!                   |\n";
@@ -222,6 +228,10 @@ int main(int argc, char** argv) {
             } else if (compile_result == STATUS_NO_IDEN) {
                 cout << "\nThe identifier file is missing, please check if the "
                         "identity.res file is in good condition.\n";
+                cout << "installing identifier library for your device.\n";
+                all_init();
+                cout << "Your device has already had identifier library.\n";
+                cout << "Please re-execute the compile command.\n";
             } else if (compile_result == STATUS_NO_INPUT) {
                 cout << "\nThere are no such files in the directory.\n";
             } else {
@@ -518,6 +528,10 @@ int main(int argc, char** argv) {
             } else if (compile_result == STATUS_NO_IDEN) {
                 cout << "\nThe identifier file is missing, please check if the "
                         "identity.res file is in good condition.\n";
+                cout << "installing identifier library for your device.\n";
+                all_init();
+                cout << "Your device has already had identifier library.\n";
+                cout << "Please re-execute the compile command.\n";
             } else if (compile_result == STATUS_NO_INPUT) {
                 cout << "\nThere are no such files in the directory.\n";
             } else {
@@ -537,9 +551,12 @@ int main(int argc, char** argv) {
                 cout << "\nCompiler error or there is no g++ compiler "
                         "environment!\n";
             } else if (compile_result == STATUS_NO_IDEN) {
-                cout << "\nThe identifier file is missing, please check if "
-                        "the "
+                cout << "\nThe identifier file is missing, please check if the "
                         "identity.res file is in good condition.\n";
+                cout << "installing identifier library for your device.\n";
+                all_init();
+                cout << "Your device has already had identifier library.\n";
+                cout << "Please re-execute the compile command.\n";
             } else if (compile_result == STATUS_NO_INPUT) {
                 cout << "\nThere are no such files in the directory.\n";
             } else {
