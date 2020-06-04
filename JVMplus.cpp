@@ -15,7 +15,7 @@ STATUS_VALUE JvavVirtualMachine::compile() {
         srcFile.close();
 
         ifstream resFile;
-        resFile.open("identifier.res", ios::in);
+        resFile.open("C:\\Jvav\\resource\\identifier.res", ios::in);
         if (!resFile.is_open()) {
             cout << "error: Failed to open the identifier definition file. "
                     "\n"

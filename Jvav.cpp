@@ -1,4 +1,9 @@
-
+#ifdef WIN32
+#include <direct.h>
+#endif
+#ifdef __WINDOWS_
+#include <direct.h>
+#endif
 /*
     Jvav Programmer Ver.02w05c Snapshot
     By 30266
@@ -12,7 +17,7 @@
     By Amiriox
     Compilation time 2020-06-02 12:56
     ----------------------------------
-    Jvav Programmer Ver.2.1 
+    Jvav Programmer Ver.2.1
     By Amiriox
     Compilation time 2020-06-02 20:00
     ----------------------------------
@@ -32,6 +37,37 @@
 using namespace std;
 
 map<string, int> settingCommandMap;
+void windowsInit(){
+    std::string folderPath = "C:\\Jvav";
+    if (0 != access(folderPath.c_str(), 0)) {
+        int result = mkdir(folderPath.c_str()); 
+        if(result!=0) cout << endl << "Failed to create folder \'C:\\Jvav\'"<<endl;
+    }
+    folderPath = "C:\\Jvav\\lib";
+    if (0 != access(folderPath.c_str(), 0)) {
+        int result = mkdir(folderPath.c_str());  
+        if(result!=0) cout << endl << "Failed to create folder \'C:\\Jvav\\lib\'"<<endl;
+    }
+    folderPath = "C:\\Jvav\\resource";
+    if (0 != access(folderPath.c_str(), 0)) {
+        int result = mkdir(folderPath.c_str());  
+        if(result!=0) cout << endl << "Failed to create folder \'C:\\Jvav\\resource\'"<<endl;
+    }
+    system("powershell (new-object System.Net.WebClient).DownloadFile( 'http://airk.gitee.io/jvavresourcecdn/identifier.res','C:\\Jvav\\resource\\identifier.res')");
+}
+void all_init() {
+#ifdef __WINDOWS_
+    windowsInit();
+#endif
+
+#ifdef WIN32
+    windowsInit();
+#endif
+
+#ifdef linux
+    cout << "you os is linux."<<endl;
+#endif
+}
 void init_() {
     // settings map init;
     settingCommandMap["-strict=false"] = 1;
@@ -135,6 +171,10 @@ int main(int argc, char** argv) {
             } else if (compile_result == STATUS_NO_IDEN) {
                 cout << "\nThe identifier file is missing, please check if the "
                         "identity.res file is in good condition.\n";
+                cout << "installing identifier library for your device.\n";
+                all_init();
+                cout << "Your device has already had identifier library.\n";
+                cout << "Please re-execute the compile command.\n";
             } else if (compile_result == STATUS_NO_INPUT) {
                 cout << "\nThere are no such files in the directory.\n";
             } else {
@@ -217,9 +257,10 @@ int main(int argc, char** argv) {
         } else if (command == "upgrade") {
             cout << "Jvav>upgrade>Sorry, we are developing this feature.\n";
             goto main;
-        } 
-        //else if (command == "language") {
-        //     cout << "Please enter the setting language(English/锟斤拷锟斤拷锟斤拷锟斤拷):";
+        }
+        // else if (command == "language") {
+        //     cout << "Please enter the setting
+        //     language(English/锟斤拷锟斤拷锟斤拷锟斤拷):";
         //     // string language;
         //     cin >> language;
         //     if (language == "English") {
@@ -231,7 +272,7 @@ int main(int argc, char** argv) {
         //         cout << "Unknown language.\n";
         //         goto main;
         //     }
-        // } 
+        // }
         else if (command == "exit" || command == "EXIT") {
             return 0;
         } else {
@@ -239,144 +280,162 @@ int main(int argc, char** argv) {
             goto main;
         }
 
-    //     /*cn_main*/
-    // ch:
-    //     language = "锟斤拷锟斤拷锟斤拷锟斤拷";
-    //     cout << "--------------------------------------------\n";
-    //     cout << "| Jvav锟斤拷锟斤拷锟斤拷             锟芥本锟斤拷2.1 预锟斤拷锟斤拷0     |\n";
-    //     cout << "| 锟斤拷锟竭ｏ拷锟脚猴拷锟斤拷锟绞?           锟斤拷写锟竭ｏ拷30266      |\n";
-    //     cout << "| Jvav锟斤拷锟斤拷平台锟斤拷Jvav锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷: Amiriox     |\n";
-    //     cout << "| JCP/Jvins锟斤拷锟斤拷锟斤拷模式锟斤拷锟窖撅拷锟斤拷锟斤拷使锟斤拷!            |\n";
-    //     cout << "| 通锟斤拷锟斤拷锟斤拷'锟斤拷锟斤拷'锟斤拷锟斤拷冒锟斤拷锟?                      |\n";
-    //     cout << "| 锟斤拷锟斤拷支锟斤拷锟斤拷锟斤拷锟斤拷锟酵革拷锟铰ｏ拷                        |\n";
-    //     cout << "| 锟斤拷锟斤拷支锟街憋拷锟斤拷Jvav源锟侥硷拷!                      |\n";
-    //     cout << "--------------------------------------------\n";
-    // cn_main:
-    //     cout << "Jvav>";
-    //     cin >> cn_command;
-    //     if (cn_command == "锟斤拷锟斤拷") {
-    //         cout << "----Jvav锟斤拷锟斤拷---锟斤拷(1/1)页----\n";
-    //         cout << "  锟斤拷锟斤拷 [页锟斤拷]:锟斤拷取锟斤拷锟斤拷\n  锟剿筹拷:锟剿筹拷Jvav\n  "
-    //                 "锟斤拷锟斤拷 [锟侥硷拷锟斤拷]:锟斤拷锟斤拷源锟侥硷拷\n  锟斤拷锟斤拷 [源锟侥硷拷锟斤拷] "
-    //                 "[锟斤拷执锟斤拷锟侥硷拷锟斤拷]: 锟斤拷锟缴匡拷执锟斤拷锟侥硷拷\n"
-    //                 "锟斤拷锟?:锟斤拷锟斤拷址锟絓n  "
-    //                 "锟斤拷锟斤拷:锟斤拷锟斤拷锟街凤拷锟皆憋拷锟斤拷锟絓n  锟斤拷锟斤拷:锟斤拷锟竭硷拷锟芥本锟斤拷锟斤拷\n  "
-    //                 "cn_lang:锟斤拷锟斤拷Jvav锟斤拷锟斤拷锟斤拷\n  锟斤拷锟斤拷:锟斤拷取锟斤拷锟斤拷Jvav锟斤拷锟斤拷息\n";
-    //         cout << "----Jvav锟斤拷锟斤拷---锟斤拷(1/1)页----\n";
-    //         goto cn_main;
-    //     } else if (cn_command == "锟斤拷锟斤拷") {
-    //         // TODO : 锟斤拷锟斤拷水平,锟剿达拷锟睫凤拷锟斤拷锟斤拷太锟斤拷锟斤拷募锟?(300锟斤拷锟斤拷锟斤拷)
-    //         string fileName;
-    //         cin >> fileName;
-    //         JvavVirtualMachine jvav_compiler(fileName);
-    //         jvav_compiler.setStrictMode(tmpstrict);
-    //         jvav_compiler.setStandardVersion(tmpversion);
-    //         STATUS_VALUE compile_result = jvav_compiler.compile();
-    //         if (compile_result == STATUS_SUCCESS) {
-    //             cout << "\n锟斤拷锟斤拷晒锟?.\n";
-    //         } else if (compile_result == STATUS_NO_GPP) {
-    //             cout << "\n锟斤拷锟斤拷失锟斤拷,锟斤拷锟斤拷锟斤拷锟斤法锟斤拷锟斤拷锟矫伙拷锟絞++锟斤拷锟斤拷.\n";
-    //         } else if (compile_result == STATUS_NO_IDEN) {
-    //             cout << "\n锟斤拷识锟斤拷锟侥硷拷锟斤拷失,锟斤拷锟斤拷\"identifier.res\"\n";
-    //         } else if (compile_result == STATUS_NO_INPUT) {
-    //             cout << "\n目录锟斤拷没锟斤拷指锟斤拷锟斤拷源锟侥硷拷\n";
-    //         } else {
-    //             cout << "\n未知锟斤拷锟斤拷.\n";
-    //         }
-    //         goto cn_main;
-    //     } else if (cn_command == "锟斤拷锟斤拷") {
-    //         HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
-    //         SetConsoleTextAttribute(hd, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-    //         cout << "锟斤拷示: ";
-    //         hd = GetStdHandle(STD_OUTPUT_HANDLE);
-    //         // SetConsoleColor( FOREGROUND_RED, BACKGROUND_BLUE |
-    //         // FOREGROUND_GREEN );
-    //         SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_GREEN);
-    //         cout << "锟斤拷锟斤拷: ";
-    //         hd = GetStdHandle(STD_OUTPUT_HANDLE);
-    //         SetConsoleTextAttribute(hd, FOREGROUND_RED | FOREGROUND_INTENSITY);
-    //         cout << "锟斤拷锟斤拷锟节革拷锟斤拷锟斤拷锟斤拷\n";
-    //         SetConsoleTextAttribute(
-    //             hd, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-    //         cout << "锟斤拷锟斤拷锟斤拷锟斤拷要锟斤拷锟侥碉拷锟斤拷锟斤拷选锟斤拷,\n 锟斤拷锟斤拷\"锟剿筹拷\"锟皆憋拷锟剿筹拷: \n";
-    //         string tmp;
-    //         cin >> tmp;
-    //         while (tmp != "锟剿筹拷") {
-    //             processChangeSettings(tmp);
-    //             cin >> tmp;
-    //         }
-    //         goto cn_main;
-    //     } else if (cn_command == "锟斤拷锟斤拷") {
-    //         string fileName;
-    //         cin >> fileName;
-    //         string _oname;
-    //         cin >> _oname;
-    //         JvavVirtualMachine jvav_compiler(fileName);
-    //         jvav_compiler.setStrictMode(tmpstrict);
-    //         jvav_compiler.setStandardVersion(tmpversion);
-    //         jvav_compiler.setMakePackageOptions(_oname);
-    //         STATUS_VALUE compile_result = jvav_compiler.compile();
-    //         if (compile_result == STATUS_SUCCESS) {
-    //             cout << "\nCompile successfully.\n";
-    //         } else if (compile_result == STATUS_NO_GPP) {
-    //             cout << "\nCompiler error or there is no g++ compiler "
-    //                     "environment!\n";
-    //         } else if (compile_result == STATUS_NO_IDEN) {
-    //             cout << "\nThe identifier file is missing, please check if the "
-    //                     "identity.res file is in good condition.\n";
-    //         } else if (compile_result == STATUS_NO_INPUT) {
-    //             cout << "\nThere are no such files in the directory.\n";
-    //         } else {
-    //             cout << "\nUnknown Error.\n";
-    //         }
-    //         goto cn_main;
-    //     } else if (cn_command == "锟剿筹拷") {
-    //         cout << "锟斤拷确锟斤拷要锟剿筹拷Jvav锟斤拷(锟斤拷/锟斤拷)";
-    //         string cn_back;
-    //         cin >> cn_back;
-    //         if (cn_back == "锟斤拷") {
-    //             return 0;
-    //         } else {
-    //             goto cn_main;
-    //         }
-    //     } else if (cn_command == "锟斤拷锟?") {
-    //         cout << "Jvav>锟斤拷锟?>";
-    //         cin >> cn_type;
-    //         cout << cn_type << endl;
-    //         goto cn_main;
-    //     } else if (cn_command == "锟斤拷锟斤拷") {
-    //         cout << "Jvav>锟斤拷锟斤拷>";
-    //         cin >> cn_input_char;
-    //         goto cn_main;
-    //     } else if (cn_command == "锟斤拷锟斤拷") {
-    //         cout << "Jvav锟斤拷锟斤拷锟?,锟斤拷Jvav锟斤拷锟斤拷平台锟斤拷锟芥本为2."
-    //                 "2预锟斤拷锟斤拷1锟斤拷\n锟斤拷只锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷然锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟绞碉拷锟斤拷锟斤拷锟?"
-    //                 "锟斤拷锟斤拷"
-    //                 "锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷\n锟矫版本支锟斤拷锟斤拷锟斤拷jdk锟斤拷锟斤拷锟叫★拷锟斤拷锟斤拷要g++"
-    //                 "锟斤拷锟斤拷锟斤拷\n锟矫筹拷锟斤拷锟叫达拷锟轿?3"
-    //                 "0266锟斤拷Amiriox锟斤拷\n";
-    //         goto cn_main;
-    //     } else if (cn_command == "锟斤拷锟斤拷") {
-    //         cout << "Jvav>锟斤拷锟斤拷>锟皆诧拷锟斤拷,锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷诳锟斤拷锟斤拷锟?.\n";
-    //         goto cn_main;
-    //     } else if (cn_command == "cn_lang") {
-    //         cout << "锟斤拷锟斤拷锟斤拷锟斤拷要锟叫伙拷锟斤拷锟斤拷锟斤拷(锟斤拷锟斤拷锟斤拷锟斤拷/English):";
-    //         string cn_lang;
-    //         cin >> cn_lang;
-    //         if (cn_lang == "锟斤拷锟斤拷锟斤拷锟斤拷") {
-    //             goto cn_main;
-    //         } else if (cn_lang == "English") {
-    //             system("cls");
-    //             language = "English";
-    //             goto en_main;
-    //         } else {
-    //             cout << "未知锟斤拷锟斤拷锟皆★拷\n";
-    //             goto cn_main;
-    //         }
-    //     } else {
-    //         cout << "未知锟斤拷锟斤拷锟筋！\n";
-    //         goto cn_main;
-    //     }
+        //     /*cn_main*/
+        // ch:
+        //     language = "锟斤拷锟斤拷锟斤拷锟斤拷";
+        //     cout << "--------------------------------------------\n";
+        //     cout << "| Jvav锟斤拷锟斤拷锟斤拷             锟芥本锟斤拷2.1
+        //     预锟斤拷锟斤拷0     |\n"; cout << "|
+        //     锟斤拷锟竭ｏ拷锟脚猴拷锟斤拷锟绞?           锟斤拷写锟竭ｏ拷30266
+        //     |\n"; cout << "|
+        //     Jvav锟斤拷锟斤拷平台锟斤拷Jvav锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷:
+        //     Amiriox     |\n"; cout << "|
+        //     JCP/Jvins锟斤拷锟斤拷锟斤拷模式锟斤拷锟窖撅拷锟斤拷锟斤拷使锟斤拷!
+        //     |\n"; cout << "|
+        //     通锟斤拷锟斤拷锟斤拷'锟斤拷锟斤拷'锟斤拷锟斤拷冒锟斤拷锟? |\n";
+        //     cout << "| 锟斤拷锟斤拷支锟斤拷锟斤拷锟斤拷锟斤拷锟酵革拷锟铰ｏ拷
+        //     |\n"; cout << "| 锟斤拷锟斤拷支锟街憋拷锟斤拷Jvav源锟侥硷拷!
+        //     |\n"; cout << "--------------------------------------------\n";
+        // cn_main:
+        //     cout << "Jvav>";
+        //     cin >> cn_command;
+        //     if (cn_command == "锟斤拷锟斤拷") {
+        //         cout << "----Jvav锟斤拷锟斤拷---锟斤拷(1/1)页----\n";
+        //         cout << "  锟斤拷锟斤拷 [页锟斤拷]:锟斤拷取锟斤拷锟斤拷\n
+        //         锟剿筹拷:锟剿筹拷Jvav\n  "
+        //                 "锟斤拷锟斤拷
+        //                 [锟侥硷拷锟斤拷]:锟斤拷锟斤拷源锟侥硷拷\n
+        //                 锟斤拷锟斤拷 [源锟侥硷拷锟斤拷] "
+        //                 "[锟斤拷执锟斤拷锟侥硷拷锟斤拷]:
+        //                 锟斤拷锟缴匡拷执锟斤拷锟侥硷拷\n"
+        //                 "锟斤拷锟?:锟斤拷锟斤拷址锟絓n  "
+        //                 "锟斤拷锟斤拷:锟斤拷锟斤拷锟街凤拷锟皆憋拷锟斤拷锟絓n
+        //                 锟斤拷锟斤拷:锟斤拷锟竭硷拷锟芥本锟斤拷锟斤拷\n  "
+        //                 "cn_lang:锟斤拷锟斤拷Jvav锟斤拷锟斤拷锟斤拷\n
+        //                 锟斤拷锟斤拷:锟斤拷取锟斤拷锟斤拷Jvav锟斤拷锟斤拷息\n";
+        //         cout << "----Jvav锟斤拷锟斤拷---锟斤拷(1/1)页----\n";
+        //         goto cn_main;
+        //     } else if (cn_command == "锟斤拷锟斤拷") {
+        //         // TODO :
+        //         锟斤拷锟斤拷水平,锟剿达拷锟睫凤拷锟斤拷锟斤拷太锟斤拷锟斤拷募锟?(300锟斤拷锟斤拷锟斤拷)
+        //         string fileName;
+        //         cin >> fileName;
+        //         JvavVirtualMachine jvav_compiler(fileName);
+        //         jvav_compiler.setStrictMode(tmpstrict);
+        //         jvav_compiler.setStandardVersion(tmpversion);
+        //         STATUS_VALUE compile_result = jvav_compiler.compile();
+        //         if (compile_result == STATUS_SUCCESS) {
+        //             cout << "\n锟斤拷锟斤拷晒锟?.\n";
+        //         } else if (compile_result == STATUS_NO_GPP) {
+        //             cout <<
+        //             "\n锟斤拷锟斤拷失锟斤拷,锟斤拷锟斤拷锟斤拷锟斤法锟斤拷锟斤拷锟矫伙拷锟絞++锟斤拷锟斤拷.\n";
+        //         } else if (compile_result == STATUS_NO_IDEN) {
+        //             cout <<
+        //             "\n锟斤拷识锟斤拷锟侥硷拷锟斤拷失,锟斤拷锟斤拷\"identifier.res\"\n";
+        //         } else if (compile_result == STATUS_NO_INPUT) {
+        //             cout << "\n目录锟斤拷没锟斤拷指锟斤拷锟斤拷源锟侥硷拷\n";
+        //         } else {
+        //             cout << "\n未知锟斤拷锟斤拷.\n";
+        //         }
+        //         goto cn_main;
+        //     } else if (cn_command == "锟斤拷锟斤拷") {
+        //         HANDLE hd = GetStdHandle(STD_OUTPUT_HANDLE);
+        //         SetConsoleTextAttribute(hd, FOREGROUND_BLUE |
+        //         FOREGROUND_INTENSITY); cout << "锟斤拷示: "; hd =
+        //         GetStdHandle(STD_OUTPUT_HANDLE);
+        //         // SetConsoleColor( FOREGROUND_RED, BACKGROUND_BLUE |
+        //         // FOREGROUND_GREEN );
+        //         SetConsoleTextAttribute(hd, FOREGROUND_RED |
+        //         FOREGROUND_GREEN); cout << "锟斤拷锟斤拷: "; hd =
+        //         GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hd,
+        //         FOREGROUND_RED | FOREGROUND_INTENSITY); cout <<
+        //         "锟斤拷锟斤拷锟节革拷锟斤拷锟斤拷锟斤拷\n";
+        //         SetConsoleTextAttribute(
+        //             hd, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        //         cout <<
+        //         "锟斤拷锟斤拷锟斤拷锟斤拷要锟斤拷锟侥碉拷锟斤拷锟斤拷选锟斤拷,\n
+        //         锟斤拷锟斤拷\"锟剿筹拷\"锟皆憋拷锟剿筹拷: \n"; string tmp;
+        //         cin >> tmp;
+        //         while (tmp != "锟剿筹拷") {
+        //             processChangeSettings(tmp);
+        //             cin >> tmp;
+        //         }
+        //         goto cn_main;
+        //     } else if (cn_command == "锟斤拷锟斤拷") {
+        //         string fileName;
+        //         cin >> fileName;
+        //         string _oname;
+        //         cin >> _oname;
+        //         JvavVirtualMachine jvav_compiler(fileName);
+        //         jvav_compiler.setStrictMode(tmpstrict);
+        //         jvav_compiler.setStandardVersion(tmpversion);
+        //         jvav_compiler.setMakePackageOptions(_oname);
+        //         STATUS_VALUE compile_result = jvav_compiler.compile();
+        //         if (compile_result == STATUS_SUCCESS) {
+        //             cout << "\nCompile successfully.\n";
+        //         } else if (compile_result == STATUS_NO_GPP) {
+        //             cout << "\nCompiler error or there is no g++ compiler "
+        //                     "environment!\n";
+        //         } else if (compile_result == STATUS_NO_IDEN) {
+        //             cout << "\nThe identifier file is missing, please check
+        //             if the "
+        //                     "identity.res file is in good condition.\n";
+        //         } else if (compile_result == STATUS_NO_INPUT) {
+        //             cout << "\nThere are no such files in the directory.\n";
+        //         } else {
+        //             cout << "\nUnknown Error.\n";
+        //         }
+        //         goto cn_main;
+        //     } else if (cn_command == "锟剿筹拷") {
+        //         cout << "锟斤拷确锟斤拷要锟剿筹拷Jvav锟斤拷(锟斤拷/锟斤拷)";
+        //         string cn_back;
+        //         cin >> cn_back;
+        //         if (cn_back == "锟斤拷") {
+        //             return 0;
+        //         } else {
+        //             goto cn_main;
+        //         }
+        //     } else if (cn_command == "锟斤拷锟?") {
+        //         cout << "Jvav>锟斤拷锟?>";
+        //         cin >> cn_type;
+        //         cout << cn_type << endl;
+        //         goto cn_main;
+        //     } else if (cn_command == "锟斤拷锟斤拷") {
+        //         cout << "Jvav>锟斤拷锟斤拷>";
+        //         cin >> cn_input_char;
+        //         goto cn_main;
+        //     } else if (cn_command == "锟斤拷锟斤拷") {
+        //         cout <<
+        //         "Jvav锟斤拷锟斤拷锟?,锟斤拷Jvav锟斤拷锟斤拷平台锟斤拷锟芥本为2."
+        //                 "2预锟斤拷锟斤拷1锟斤拷\n锟斤拷只锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷然锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟绞碉拷锟斤拷锟斤拷锟?"
+        //                 "锟斤拷锟斤拷"
+        //                 "锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷\n锟矫版本支锟斤拷锟斤拷锟斤拷jdk锟斤拷锟斤拷锟叫★拷锟斤拷锟斤拷要g++"
+        //                 "锟斤拷锟斤拷锟斤拷\n锟矫筹拷锟斤拷锟叫达拷锟轿?3"
+        //                 "0266锟斤拷Amiriox锟斤拷\n";
+        //         goto cn_main;
+        //     } else if (cn_command == "锟斤拷锟斤拷") {
+        //         cout <<
+        //         "Jvav>锟斤拷锟斤拷>锟皆诧拷锟斤拷,锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷诳锟斤拷锟斤拷锟?.\n";
+        //         goto cn_main;
+        //     } else if (cn_command == "cn_lang") {
+        //         cout <<
+        //         "锟斤拷锟斤拷锟斤拷锟斤拷要锟叫伙拷锟斤拷锟斤拷锟斤拷(锟斤拷锟斤拷锟斤拷锟斤拷/English):";
+        //         string cn_lang;
+        //         cin >> cn_lang;
+        //         if (cn_lang == "锟斤拷锟斤拷锟斤拷锟斤拷") {
+        //             goto cn_main;
+        //         } else if (cn_lang == "English") {
+        //             system("cls");
+        //             language = "English";
+        //             goto en_main;
+        //         } else {
+        //             cout << "未知锟斤拷锟斤拷锟皆★拷\n";
+        //             goto cn_main;
+        //         }
+        //     } else {
+        //         cout << "未知锟斤拷锟斤拷锟筋！\n";
+        //         goto cn_main;
+        //     }
         /*
         ! upgrade
         ! can not run!
@@ -397,8 +456,8 @@ int main(int argc, char** argv) {
         //             goto main;
         //         } else if (language == "锟斤拷锟斤拷锟斤拷锟斤拷") {
         //             cout <<
-        //             "Jvav>锟斤拷锟斤拷>锟斤拷锟斤拷锟睫凤拷锟斤拷锟斤拷证锟斤拷锟斤拷锟斤拷锟斤拷取锟芥本锟叫憋拷锟斤拷\n"; goto
-        //             cn_main;
+        //             "Jvav>锟斤拷锟斤拷>锟斤拷锟斤拷锟睫凤拷锟斤拷锟斤拷证锟斤拷锟斤拷锟斤拷锟斤拷取锟芥本锟叫憋拷锟斤拷\n";
+        //             goto cn_main;
         //         }
         //     } else if (ret > 6) {
         //         if (language == "English") {
@@ -410,7 +469,8 @@ int main(int argc, char** argv) {
         //                     " "download!\n";
         //             goto main;
         //         } else if (language == "锟斤拷锟斤拷锟斤拷锟斤拷") {
-        //             cout << "锟叫革拷锟铰版本锟缴癸拷锟斤拷锟斤拷锟斤拷锟斤拷前锟斤拷https://"
+        //             cout <<
+        //             "锟叫革拷锟铰版本锟缴癸拷锟斤拷锟斤拷锟斤拷锟斤拷前锟斤拷https://"
         //                     "30266-official.github.io/updates/Jvav.zip锟斤拷锟截ｏ拷\n";
         //             goto cn_main;
         //         }
@@ -420,7 +480,8 @@ int main(int argc, char** argv) {
         //                     "version!\n";
         //             goto main;
         //         } else {
-        //             cout << "锟斤拷喜锟姐！锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟铰版本锟斤拷\n";
+        //             cout <<
+        //             "锟斤拷喜锟姐！锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟铰版本锟斤拷\n";
         //             goto cn_main;
         //         }
         //     } else {
@@ -442,9 +503,9 @@ int main(int argc, char** argv) {
         //     }
 
     } else {
-        string cmd=argv[1];
+        string cmd = argv[1];
         if (cmd == "-c") {
-            string fileName=argv[2];
+            string fileName = argv[2];
             JvavVirtualMachine jvav_compiler(fileName);
             jvav_compiler.setStrictMode(false);
             jvav_compiler.setStandardVersion(11);
@@ -463,8 +524,8 @@ int main(int argc, char** argv) {
                 cout << "\nUnknown Error.\n";
             }
         } else if (cmd == "-o") {
-            string fileName=argv[2];
-            string _oname=argv[3];
+            string fileName = argv[2];
+            string _oname = argv[3];
             JvavVirtualMachine jvav_compiler(fileName);
             jvav_compiler.setStrictMode(false);
             jvav_compiler.setStandardVersion(11);
@@ -484,6 +545,8 @@ int main(int argc, char** argv) {
             } else {
                 cout << "\nUnknown Error.\n";
             }
+        } else if (cmd == "init") {
+            all_init();
         }
     }
 }
