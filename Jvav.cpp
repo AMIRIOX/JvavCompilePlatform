@@ -30,7 +30,6 @@
     Compilation time 2020-06-04 09:53
 */
 #include <windows.h>
-
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -564,6 +563,13 @@ int main(int argc, char** argv) {
             }
         } else if (cmd == "init") {
             all_init();
-        }
+        } 
+        //else if(cmd=="env"){
+        //     changeEnvironmentVar();
+        //     string a = viewEnvironmentVar("test");
+        //     cout << a << endl;
+        //     system("P1177");
+        //     system("pause");
+        // }
     }
 }
