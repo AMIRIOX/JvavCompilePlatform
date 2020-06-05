@@ -58,7 +58,6 @@ void windowsInit(){
     }
     system("powershell (new-object System.Net.WebClient).DownloadFile( 'http://airk.gitee.io/jvavresourcecdn/identifier.res','C:\\Jvav\\resource\\identifier.res')");
     
-    cout << "JCP has been initialized." << endl;
 }
 void all_init() {
 #ifdef __WINDOWS_
@@ -563,7 +562,13 @@ int main(int argc, char** argv) {
             }
         } else if (cmd == "init") {
             all_init();
-        } 
+            cout << "JCP has been initialized." << endl;
+            cout << "Updating Jvav Library...\n\n\n" << endl;
+            system("download.exe");
+            cout << "\n\n\nAll initialized."<<endl;
+        } else if (cmd == "update"){
+            system("download.exe");
+        }
         //else if(cmd=="env"){
         //     changeEnvironmentVar();
         //     string a = viewEnvironmentVar("test");
