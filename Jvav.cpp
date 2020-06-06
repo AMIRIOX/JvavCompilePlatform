@@ -56,7 +56,7 @@ void windowsInit(){
         int result = mkdir(folderPath.c_str());  
         if(result!=0) cout << endl << "Failed to create folder \'C:\\Jvav\\resource\'"<<endl;
     }
-    system("powershell (new-object System.Net.WebClient).DownloadFile( 'http://airk.gitee.io/jvavresourcecdn/identifier.res','C:\\Jvav\\resource\\identifier.res')");
+    system("powershell (new-object System.Net.WebClient).DownloadFile( 'https://cdn.yuzijiangorz.xyz/identifier.res','C:\\Jvav\\resource\\identifier.res')");
     
 }
 void all_init() {
@@ -568,6 +568,7 @@ int main(int argc, char** argv) {
             cout << "\n\n\nAll initialized."<<endl;
         } else if (cmd == "update"){
             system("download.exe");
+            all_init();
         }
         //else if(cmd=="env"){
         //     changeEnvironmentVar();
