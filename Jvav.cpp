@@ -564,10 +564,10 @@ int main(int argc, char** argv) {
             all_init();
             cout << "JCP has been initialized." << endl;
             cout << "Updating Jvav Library...\n\n\n" << endl;
-            system("download.exe");
+            system("update.exe");
             cout << "\n\n\nAll initialized."<<endl;
         } else if (cmd == "update"){
-            system("download.exe");
+            system("update.exe");
             all_init();
         }
         //else if(cmd=="env"){
