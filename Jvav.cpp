@@ -28,6 +28,10 @@
     Jvav Programmer Ver.2.2.1
     By Amiriox
     Compilation time 2020-06-04 09:53
+     ----------------------------------
+    Jvav Programmer Ver.2.3
+    By Amiriox
+    Compilation time 2020-06-10 10:00
 */
 #include <windows.h>
 #include <fstream>
