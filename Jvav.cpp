@@ -32,8 +32,21 @@
     Jvav Programmer Ver.2.3
     By Amiriox
     Compilation time 2020-06-10 10:00
+    -----------------------------------
+    Jvav Programmer Ver.2.3 ReBuild
+    By yuzijiangorz
+    Compilation time 2020-6-10 14:39
+    -----------------------------------
+    Jvav Programmer Ver.2.3 Re-ReBuild
+    By Amiriox
+    Compilation time 2020-6-15 18:31
 */
+#include <io.h>
 #include <windows.h>
+#ifdef WIN32
+#include <windows.h>
+#endif  // WIN32
+
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -42,41 +55,115 @@
 
 #include "JVMplus.h"
 using namespace std;
-
+const double curVersion = 2.3;
 map<string, int> settingCommandMap;
-void windowsInit(){
+// // void windowsInit(){
+// //     std::string folderPath = "C:\\Jvav";
+// //     if (0 != access(folderPath.c_str(), 0)) {
+// //         int result = mkdir(folderPath.c_str());
+// //         if(result!=0) cout << endl << "Failed to create folder
+// \'C:\\Jvav\'"<<endl;
+// //     }
+// //     folderPath = "C:\\Jvav\\lib";
+// //     if (0 != access(folderPath.c_str(), 0)) {
+// //         int result = mkdir(folderPath.c_str());
+// //         if(result!=0) cout << endl << "Failed to create folder
+// \'C:\\Jvav\\lib\'"<<endl;
+// //     }
+// //     folderPath = "C:\\Jvav\\resource";
+// //     if (0 != access(folderPath.c_str(), 0)) {
+// //         int result = mkdir(folderPath.c_str());
+// //         if(result!=0) cout << endl << "Failed to create folder
+// \'C:\\Jvav\\resource\'"<<endl;
+// //     }
+// //     system("powershell (new-object System.Net.WebClient).DownloadFile(
+// 'https://cdn.yuzijiangorz.xyz/identifier.res','C:\\Jvav\\resource\\identifier.res')");
+
+// // }
+void windowsInit() {
+#ifdef WIN32
+
+    system("chcp 65001");
+    if (_access("wget.exe", 0) == -1) {
+        printf("fatal Error: Lost wget.exe ");
+        return;
+    }
+    if (_access("upgrade.exe", 0) == -1) {
+        printf("fatal Error: Lost upgrade.exe");
+    }
     std::string folderPath = "C:\\Jvav";
     if (0 != access(folderPath.c_str(), 0)) {
-        int result = mkdir(folderPath.c_str()); 
-        if(result!=0) cout << endl << "Failed to create folder \'C:\\Jvav\'"<<endl;
+        string command = "mkdir " + folderPath;
+        int result = system(command.c_str());
+        if (result == -1)
+            cout << '\n' << "Failed to create folder \'C:\\Jvav\'" << '\n';
     }
-    folderPath = "C:\\Jvav\\lib";
     if (0 != access(folderPath.c_str(), 0)) {
-        int result = mkdir(folderPath.c_str());  
-        if(result!=0) cout << endl << "Failed to create folder \'C:\\Jvav\\lib\'"<<endl;
+        int result = system("mkdir C:\\Jvav\\lib");
+        if (result == -1)
+            cout << endl << "Failed to create folder \'C:\\Jvav\\lib\'" << endl;
     }
-    folderPath = "C:\\Jvav\\resource";
     if (0 != access(folderPath.c_str(), 0)) {
-        int result = mkdir(folderPath.c_str());  
-        if(result!=0) cout << endl << "Failed to create folder \'C:\\Jvav\\resource\'"<<endl;
+        int result = system("mkdir C:\\Jvav\\resource");
+        if (result == -1)
+            cout << endl
+                 << "Failed to create folder \'C:\\Jvav\\resource\'" << endl;
     }
-    system("powershell (new-object System.Net.WebClient).DownloadFile( 'https://cdn.yuzijiangorz.xyz/identifier.res','C:\\Jvav\\resource\\identifier.res')");
-    
+    system(
+        "wget http://cdn.yuzijiangorz.xyz/identifier.res -O "
+        "C:\\Jvav\\resource\\identifier.res");
+#endif  // WINDOWS
 }
-void all_init() {
-#ifdef __WINDOWS_
-    windowsInit();
-#endif
 
+void all_init() {
 #ifdef WIN32
     windowsInit();
 #endif
 
 #ifdef linux
-    cout << "your os is linux."<<endl;
+    cout << "your os is linux." << endl;
+    // TODO Linux version
 #endif
 }
+/*
+    void checkupdate
+    DO: check the update
+    Author: yuzijiangorz & Amiriox(Rebuild)
+*/
+void checkupgrade() {
+    system("chcp 65001");
+    system("wget http://cdn.yuzijiangorz.xyz/newest.txt");
+    FILE* fp = fopen("newest.txt", "w");
+    double ver;
+    fscanf(fp, "Ver %.2f", &ver);
+    fclose(fp);
+    system("del newest.txt");
+    if (ver == curVersion) {
+        printf("你已经在最新版本\n");
+    }
+    if (ver > curVersion) {
+        cout << "Jvav is old version. Upgrade?(y/n): ";
+        char isUp;
+        cin >> isUp;
+        if (isUp == 'y') {
+            system("update.exe");
+        } else {
+            cout << "You gave up updating. Execute `jcp update` to update."
+                 << endl;
+        }
+    }
+}
 void init_() {
+#ifdef WIN32
+    if (_access("wget.exe", 0) == -1) {
+        printf("fatal Error: Lost wget.exe\n ");
+        return;
+    }
+    if (_access("upgrade.exe", 0) == -1) {
+        printf("fatal Error: Lost upgrade.exe\n");
+        return;
+    }
+#endif
     // settings map init;
     settingCommandMap["-strict=false"] = 1;
     settingCommandMap["-strict=true"] = 2;
@@ -569,12 +656,12 @@ int main(int argc, char** argv) {
             cout << "JCP has been initialized." << endl;
             cout << "Updating Jvav Library...\n\n\n" << endl;
             system("update.exe");
-            cout << "\n\n\nAll initialized."<<endl;
-        } else if (cmd == "update"){
+            cout << "\n\n\nAll initialized." << endl;
+        } else if (cmd == "update") {
             system("update.exe");
             all_init();
         }
-        //else if(cmd=="env"){
+        // else if(cmd=="env"){
         //     changeEnvironmentVar();
         //     string a = viewEnvironmentVar("test");
         //     cout << a << endl;
