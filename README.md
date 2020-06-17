@@ -2,6 +2,8 @@
 
 本编程语言取得了当事人的授权.
 
+暂时不支持Linux
+
 如果您想获得更好的开发体验(关键字高亮,快捷键自动编译等,自动补全正在开发)
 可以在VSCode中搜索插件`Jvavscode`,安装此插件后安装主程序即可ctrl+f5编译运行 (**请注意重启VSCode**)
 
@@ -13,10 +15,14 @@
 
 
 
-## 源代码编译和运行
+## 源代码编译和运行(由于使用了一些Windows API,使用clang编译前请确保添加了VS的库到`INCLUDE`环境变量)
 
-```shell
+```s
 $ g++ Jvav.cpp JVMplus.cpp -o JCP
+```
+或
+```s
+$ clang++ Jvav.cpp JVMplus.cpp -o JCP
 ```
 
 ## 可执行文件使用方法
