@@ -212,17 +212,16 @@ void processChangeSettings(string set_c) {
 };
 void printPreInfo() {
     cout << "---------------------------------------------\n";
-    cout << "| Jvav Program               Ver.2.2.1 Pre1 |\n";
-    cout << "| By Dr.ZhangHaoYang      Programmer 30266  |\n";
-    cout << "| The author of the JCP & Jvins: Amiriox    |\n";
-    cout << "| Enter'help'to get help!                   |\n";
+    cout << "| Jvav Program               Ver.3.1        |\n";
+    cout << "| By Dr.ZhangHaoYang    Programmer Amiriox  |\n";
+    cout << "| Enter 'help' to get help!                 |\n";
     cout << "| Online push updates are now supported!    |\n";
-    cout << "| Compile vav source ile are now supported! |\n";
-    cout << "--------------------------------------------\n";
+    cout << "| Compile vav source file are now supported!|\n";
+    cout << "---------------------------------------------\n";
 	executeMainLoop();
 }
 void printInfo(){
-	cout<< "Jvav Programm Ver.1.2 Pre1\nIt's just a joke, but we still "
+	cout<< "Jvav Programm Ver.3.1 Pre1\nIt's just a joke, but we still "
                    "make it, and the joke was first brought by Zhang "
                    "Haoyang.\nThis version supports running away from "
                    "jdk.\nThe person writing the program is Amiriox and yuzijiangorz.\n";
@@ -343,12 +342,13 @@ int main(int argc, char **argv) {
         cout << "Initializing program...\n";
         ////cout << "Configuring the online update service...\n";
         ///system("del upgrade.txt");
-		cout << "checking upgrade...\n";
-		checkUpgrade();
+		//cout << "checking upgrade...\n";
+		//checkUpgrade();
 		#ifdef WIN32
-			Sleep(20000);
+			Sleep(9000);
 		#endif
         system("cls");
+        printPreInfo();
 		executeMainLoop();
     }else{
 		string type = argv[1];
