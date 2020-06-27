@@ -1,6 +1,10 @@
 # Jvav Compile Platform 源代码
 
 本编程语言取得了当事人的授权.
+关于LICENSE(许可协议_):
+基于SATA开源,需要您在遵守MIT协议的基础上, **star本项目,并发送邮件给作者(~~发啥都行~~**
+才能使用或修改源代码.
+如果您仅仅使用二进制文件而不关心源代码,则不需要遵守上述规则.
 
 暂时不支持Linux, 另外, 二进制文件名由`JCP.exe`换为了`jvc.exe`
 原因是,我们已经开发出了JLC(对于JCP来说,JLC更加高级,但也十分不稳定,JLC主要基于LLVM)的alpha版本
@@ -85,7 +89,6 @@ P3. Compiler error or there is no g++ compiler environment!
 
 P4. your os is linux.
 你的操作系统为linux发行版(包括Deepin也是Linux发行版),目前暂不支持
-
 
 ---
 
