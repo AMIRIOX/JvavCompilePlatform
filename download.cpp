@@ -135,36 +135,8 @@ add:
 using namespace std;
 #define STATUS_SUCCESS 1
 #define STATUS_ERROR -1;
-/**
- * function: ConvertLPWSTRToLPSTR 
- * type: char*; 
- * do: Convert LPWSTR To LPSTR;
- * args:
- *      1. lpwszStrIn type:LPWSTR used: 转换参数       
- */
-char *ConvertLPWSTRToLPSTR(LPWSTR lpwszStrIn) {
-    LPSTR pszOut = NULL;
-    try {
-        if (lpwszStrIn != NULL) {
-            int nInputStrLen = wcslen(lpwszStrIn);
 
-            // Double NULL Termination
-            int nOutputStrLen =
-                WideCharToMultiByte(CP_ACP, 0, lpwszStrIn, nInputStrLen, NULL,
-                0, 0, 0) +2;
-            pszOut = new char[nOutputStrLen];
 
-            if (pszOut) {
-                memset(pszOut, 0x00, nOutputStrLen);
-                WideCharToMultiByte(CP_ACP, 0, lpwszStrIn, nInputStrLen, pszOut,
-                                    nOutputStrLen, 0, 0);
-            }
-        }
-    } catch (std::exception e) {
-        cout << "Unknown error." << endl;
-    }
-    return pszOut;
-}
 /**
  * function: replace;
  * type: string;
@@ -221,11 +193,11 @@ int main(int argc, char **argv) {
     //system("pause");
     printf("Begin to update.....\n");
     Sleep(3000);
-    std::string cmd = wgetDir+" http://cdn.yuzijiangorz.xyz/Jvav.7z";
+    std::string cmd = wgetDir+" http://47.105.108.192/Jvav/Jvav.7z";
     system(cmd.c_str());  //获取
-    cmd = wgetDir+" http://cdn.yuzijiangorz.xyz/7z.exe";
+    cmd = wgetDir+" http://47.105.108.192/Jvav/7z.exe";
     system(cmd.c_str());
-    cmd = wgetDir+" http://cdn.yuzijiangorz.xyz/7z.dll";
+    cmd = wgetDir+" http://47.105.108.192/Jvav/7z.dll";
     system(cmd.c_str());
     //解压
     std::string sevenZDir=direy+"\\7z.exe";
@@ -238,12 +210,12 @@ int main(int argc, char **argv) {
     system(cmd.c_str());
     
     replace(direy);
-    printf("get lib...\n");
+    printf("getting lib...\n");
     system("del C:\\Jvav\\lib");
     system("rd /s /q C:\\Jvav\\lib");//rd只有删除文件夹的功能，没有删除文件的权限
-    system("wget http://cdn.yuzijiangorz.xyz/Jvavlib.7z");
-    system("7z.exe x Jvavlib.7z -oC:\\Jvav");
-    system("del Jvavlib.7z");
+    system("wget http://47.105.108.192/Jvav/lib.7z");
+    system("7z.exe x lib.7z -oC:\\Jvav");
+    system("del lib.7z");
     printf("delete files...\n");
     cmd=(string)"del "+direy+(string)"\\Jvav-tmp";
     system(cmd.c_str());

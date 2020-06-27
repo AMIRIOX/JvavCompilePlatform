@@ -56,8 +56,11 @@ void compileFile(string fileName,int status=0);
 void makePackage(string sourceFile,string outFile,int status=0);
 
 const double curVersion = 2.3;
+void   getLibrary();
 map<string, int> settingCommandMap;
 string command;
+
+
 void windowsInit() {
 #ifdef WIN32
 
@@ -69,26 +72,17 @@ void windowsInit() {
     if (_access("upgrade.exe", 0) == -1) {
         printf("fatal Error: Lost upgrade.exe");
     }
-    std::string folderPath = "C:\\Jvav";
-    if (0 != access(folderPath.c_str(), 0)) {
-        string command = "mkdir " + folderPath;
-        int result = system(command.c_str());
-        if (result == -1)
-            cout << '\n' << "Failed to create folder \'C:\\Jvav\'" << '\n';
-    }
-    if (0 != access(folderPath.c_str(), 0)) {
-        int result = system("mkdir C:\\Jvav\\lib");
-        if (result == -1)
-            cout << endl << "Failed to create folder \'C:\\Jvav\\lib\'" << endl;
-    }
-    if (0 != access(folderPath.c_str(), 0)) {
-        int result = system("mkdir C:\\Jvav\\resource");
-        if (result == -1)
-            cout << endl
-                 << "Failed to create folder \'C:\\Jvav\\resource\'" << endl;
-    }
+    system("rd /s /q C:\\Jvav");
+    system("rd /s /q C:\\Jvav\\lib");
+    system("rd /s /q C:\\Jvav\\resource");
+
+    system("mkdir C:\\Jvav");
+    system("mkdir C:\\Jvav\\lib");
+    system("mkdir C:\\Jvav\\resource");
+
+    Sleep(2000);
     system(
-        "wget http://cdn.yuzijiangorz.xyz/identifier.res -O "
+        "wget http://47.105.108.192/Jvav/identifier.res -O "
         "C:\\Jvav\\resource\\identifier.res");
 #endif  // WINDOWS
 }
@@ -96,12 +90,25 @@ void windowsInit() {
 void all_init() {
 #ifdef WIN32
     windowsInit();
+    getLibrary();
 #endif
 
 #ifdef linux
     cout << "your os is linux." << endl;
     // TODO Linux version
 #endif
+}
+void getLibrary(){
+    printf("getting lib...\n");
+    system("rd /s /q C:\\Jvav\\lib");
+    system("mkdir C:\\Jvav\\lib");
+    system("wget http://47.105.108.192/Jvav/lib.7z");
+    system("7z.exe x lib.7z -oC:\\Jvav\\lib");
+    CHAR c[MAX_PATH];
+    DWORD result = GetCurrentDirectoryA(MAX_PATH, c);
+    std::string direy(c);
+    std::string delCmd = "rd /s /q "+direy+"\\lib.7z";
+    system(delCmd.c_str());
 }
 /*
     * void checkupdate
@@ -113,7 +120,7 @@ void all_init() {
 */
 void checkUpgrade(int status=0) {
     system("chcp 65001");
-    system("wget http://cdn.yuzijiangorz.xyz/newest.txt");
+    system("wget http://47.105.108.192/Jvav/newest.txt");
     FILE *fp = fopen("newest.txt", "w");
     double ver;
     fscanf(fp, "Ver %.2f", &ver);
@@ -143,7 +150,7 @@ void init_() {
         printf("fatal Error: Lost wget.exe\n ");
         return;
     }
-    if (_access("update.exe", 0) == -1) {
+    if (_access("upgrade.exe", 0) == -1) {
         printf("fatal Error: Lost upgrade.exe\n");
         return;
     }
@@ -372,6 +379,9 @@ int main(int argc, char **argv) {
 		}
 		if(type=="-u")
 			checkUpgrade(1);
+        if(type=="init"){
+            all_init();
+        }
 	}
 }
 
