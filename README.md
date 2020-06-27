@@ -2,7 +2,11 @@
 
 本编程语言取得了当事人的授权.
 
-暂时不支持Linux
+暂时不支持Linux, 另外, 二进制文件名由`JCP.exe`换为了`jvc.exe`
+原因是,我们已经开发出了JLC(对于JCP来说,JLC更加高级,但也十分不稳定,JLC主要基于LLVM)的alpha版本
+JLC推出公开版时将会叫做`jvac.exe`, 
+JCM(编译器后端是手打的虚拟机嘤嘤嘤)将会叫做`jcm.exe`
+最终版本的Jvav编译器是JRC(Jvav Rust Compiler), 由rust编写,叫做`jvavc.exe`.
 
 如果您想获得更好的开发体验(关键字高亮,快捷键自动编译等,自动补全正在开发)
 可以在VSCode中搜索插件`Jvavscode`,安装此插件后安装主程序即可ctrl+f5编译运行 (**请注意重启VSCode**)
@@ -18,23 +22,23 @@
 ## 源代码编译和运行(由于使用了一些Windows API,使用clang编译前请确保添加了VS的库到`INCLUDE`环境变量)
 
 ```s
-$ g++ Jvav.cpp JVMplus.cpp -o JCP
+$ g++ Jvav.cpp JVMplus.cpp -o jvc
 ```
 或
 ```s
-$ clang++ Jvav.cpp JVMplus.cpp -o JCP
+$ clang++ Jvav.cpp JVMplus.cpp -o jvc
 ```
 
 ## 可执行文件使用方法
 
-将本目录加入环境变量,在cmd中输入`jcp init`
-点击编译后的可执行文件即可,或在cmd中输入`jcp`
-同时,您也可以在cmd中直接使用`jcp -c {源文件名}.jvav`
+将本目录加入环境变量,在cmd中输入`jvc init`
+点击编译后的可执行文件即可,或在cmd中输入`jvc`
+同时,您也可以在cmd中直接使用`jvc -c {源文件名}.jvav`
 
 ## 初始化
 在cmd中输入
 ```shell
-jcp init
+jvc init
 ```
 
 ## 设置
@@ -69,7 +73,7 @@ P1. Failed to create folder .....
 在C盘下面新建`Jvav`文件夹,并在Jvav文件夹下新建`resource`和`lib`文件夹,在`resource`文件夹下放入您在http://airk.gitee.io/jvavresourcecdn/identifier.res下载的identifier.res文件
 
 P2. The identifier file is missing, please check if the identity.res file is in good condition.installing identifier library for your device.Your device has already had identifier library.Please re-execute the compile command.
-表示您在编译前没有执行jcp init命令,在这个情况下,JCP将为您自动初始化,再次编译即可
+表示您在编译前没有执行jvc init命令,在这个情况下,JCP将为您自动初始化,再次编译即可
 解决方案是:
 再次编译
 
